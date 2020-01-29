@@ -95,14 +95,14 @@ export class AppComponent implements OnInit {
                                 text: this.i18nService.t('loginExpired'),
                             });
                         }
-                        this.router.navigate(['home']);
+                        this.router.navigate(['login']);
                         this.stateService.purge();
                     });
                     this.changeDetectorRef.detectChanges();
                 });
             } else if (msg.command === 'authBlocked') {
                 this.ngZone.run(() => {
-                    this.router.navigate(['home']);
+                    this.router.navigate(['login']);
                 });
             } else if (msg.command === 'locked') {
                 this.stateService.purge();
