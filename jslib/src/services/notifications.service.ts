@@ -30,78 +30,79 @@ export class NotificationsService implements NotificationsServiceAbstraction {
         private lockService: LockService, private logoutCallback: () => Promise<void>) { }
 
     async init(environmentService: EnvironmentService): Promise<void> {
-        this.inited = false;
-        this.url = 'https://notifications.bitwarden.com';
-        if (environmentService.notificationsUrl != null) {
-            this.url = environmentService.notificationsUrl;
-        } else if (environmentService.baseUrl != null) {
-            this.url = environmentService.baseUrl + '/notifications';
-        }
+        return;
+        // this.inited = false;
+        // this.url = 'https://notifications.bitwarden.com';
+        // if (environmentService.notificationsUrl != null) {
+        //     this.url = environmentService.notificationsUrl;
+        // } else if (environmentService.baseUrl != null) {
+        //     this.url = environmentService.baseUrl + '/notifications';
+        // }
 
-        // Set notifications server URL to `https://-` to effectively disable communication
-        // with the notifications server from the client app
-        if (this.url === 'https://-') {
-            return;
-        }
+        // // Set notifications server URL to `https://-` to effectively disable communication
+        // // with the notifications server from the client app
+        // if (this.url === 'https://-') {
+        //     return;
+        // }
 
-        if (this.signalrConnection != null) {
-            this.signalrConnection.off('ReceiveMessage');
-            this.signalrConnection.off('Heartbeat');
-            await this.signalrConnection.stop();
-            this.connected = false;
-            this.signalrConnection = null;
-        }
+        // if (this.signalrConnection != null) {
+        //     this.signalrConnection.off('ReceiveMessage');
+        //     this.signalrConnection.off('Heartbeat');
+        //     await this.signalrConnection.stop();
+        //     this.connected = false;
+        //     this.signalrConnection = null;
+        // }
 
-        this.signalrConnection = new signalR.HubConnectionBuilder()
-            .withUrl(this.url + '/hub', {
-                accessTokenFactory: () => this.apiService.getActiveBearerToken(),
-            })
-            .withHubProtocol(new signalRMsgPack.MessagePackHubProtocol())
-            // .configureLogging(signalR.LogLevel.Trace)
-            .build();
+        // this.signalrConnection = new signalR.HubConnectionBuilder()
+        //     .withUrl(this.url + '/hub', {
+        //         accessTokenFactory: () => this.apiService.getActiveBearerToken(),
+        //     })
+        //     .withHubProtocol(new signalRMsgPack.MessagePackHubProtocol())
+        //     // .configureLogging(signalR.LogLevel.Trace)
+        //     .build();
 
-        this.signalrConnection.on('ReceiveMessage',
-            (data: any) => this.processNotification(new NotificationResponse(data)));
-        this.signalrConnection.on('Heartbeat',
-            (data: any) => { /*console.log('Heartbeat!');*/ });
-        this.signalrConnection.onclose(() => {
-            this.connected = false;
-            this.reconnect(true);
-        });
-        this.inited = true;
-        if (await this.isAuthedAndUnlocked()) {
-            await this.reconnect(false);
-        }
+        // this.signalrConnection.on('ReceiveMessage',
+        //     (data: any) => this.processNotification(new NotificationResponse(data)));
+        // this.signalrConnection.on('Heartbeat',
+        //     (data: any) => { /*console.log('Heartbeat!');*/ });
+        // this.signalrConnection.onclose(() => {
+        //     this.connected = false;
+        //     this.reconnect(true);
+        // });
+        // this.inited = true;
+        // if (await this.isAuthedAndUnlocked()) {
+        //     await this.reconnect(false);
+        // }
     }
 
     async updateConnection(sync = false): Promise<void> {
-        if (!this.inited) {
-            return;
-        }
-        try {
-            if (await this.isAuthedAndUnlocked()) {
-                await this.reconnect(sync);
-            } else {
-                await this.signalrConnection.stop();
-            }
-        } catch (e) {
-            // tslint:disable-next-line
-            console.error(e.toString());
-        }
+        // if (!this.inited) {
+        //     return;
+        // }
+        // try {
+        //     if (await this.isAuthedAndUnlocked()) {
+        //         await this.reconnect(sync);
+        //     } else {
+        //         await this.signalrConnection.stop();
+        //     }
+        // } catch (e) {
+        //     // tslint:disable-next-line
+        //     console.error(e.toString());
+        // }
     }
 
     async reconnectFromActivity(): Promise<void> {
-        this.inactive = false;
-        if (this.inited && !this.connected) {
-            await this.reconnect(true);
-        }
+        // this.inactive = false;
+        // if (this.inited && !this.connected) {
+        //     await this.reconnect(true);
+        // }
     }
 
     async disconnectFromInactivity(): Promise<void> {
-        this.inactive = true;
-        if (this.inited && this.connected) {
-            await this.signalrConnection.stop();
-        }
+        // this.inactive = true;
+        // if (this.inited && this.connected) {
+        //     await this.signalrConnection.stop();
+        // }
     }
 
     private async processNotification(notification: NotificationResponse) {

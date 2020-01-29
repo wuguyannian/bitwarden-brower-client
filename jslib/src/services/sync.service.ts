@@ -64,45 +64,48 @@ export class SyncService implements SyncServiceAbstraction {
     }
 
     async fullSync(forceSync: boolean, allowThrowOnError = false): Promise<boolean> {
-        this.syncStarted();
-        const isAuthenticated = await this.userService.isAuthenticated();
-        if (!isAuthenticated) {
-            return this.syncCompleted(false);
-        }
-
         const now = new Date();
-        const needsSyncResult = await this.needsSyncing(forceSync);
-        const needsSync = needsSyncResult[0];
-        const skipped = needsSyncResult[1];
+        await this.setLastSync(now);
+        return this.syncCompleted(true);
+        // this.syncStarted();
+        // const isAuthenticated = await this.userService.isAuthenticated();
+        // if (!isAuthenticated) {
+        //     return this.syncCompleted(false);
+        // }
 
-        if (skipped) {
-            return this.syncCompleted(false);
-        }
+        // const now = new Date();
+        // const needsSyncResult = await this.needsSyncing(forceSync);
+        // const needsSync = needsSyncResult[0];
+        // const skipped = needsSyncResult[1];
 
-        if (!needsSync) {
-            await this.setLastSync(now);
-            return this.syncCompleted(false);
-        }
+        // if (skipped) {
+        //     return this.syncCompleted(false);
+        // }
 
-        const userId = await this.userService.getUserId();
-        try {
-            const response = await this.apiService.getSync();
+        // if (!needsSync) {
+        //     await this.setLastSync(now);
+        //     return this.syncCompleted(false);
+        // }
 
-            await this.syncProfile(response.profile);
-            await this.syncFolders(userId, response.folders);
-            await this.syncCollections(response.collections);
-            await this.syncCiphers(userId, response.ciphers);
-            await this.syncSettings(userId, response.domains);
+        // const userId = await this.userService.getUserId();
+        // try {
+        //     const response = await this.apiService.getSync();
 
-            await this.setLastSync(now);
-            return this.syncCompleted(true);
-        } catch (e) {
-            if (allowThrowOnError) {
-                throw e;
-            } else {
-                return this.syncCompleted(false);
-            }
-        }
+        //     await this.syncProfile(response.profile);
+        //     await this.syncFolders(userId, response.folders);
+        //     await this.syncCollections(response.collections);
+        //     await this.syncCiphers(userId, response.ciphers);
+        //     await this.syncSettings(userId, response.domains);
+
+        //     await this.setLastSync(now);
+        //     return this.syncCompleted(true);
+        // } catch (e) {
+        //     if (allowThrowOnError) {
+        //         throw e;
+        //     } else {
+        //         return this.syncCompleted(false);
+        //     }
+        // }
     }
 
     async syncUpsertFolder(notification: SyncFolderNotification, isEdit: boolean): Promise<boolean> {
