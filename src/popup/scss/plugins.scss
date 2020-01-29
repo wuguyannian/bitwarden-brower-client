@@ -1,0 +1,208 @@
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~angular2-toaster/toaster";
+
+@import "variables.scss";
+@import "buttons.scss";
+
+// Toaster
+
+#toast-container {
+    .toast-close-button {
+        right: -0.15em;
+    }
+
+    &.toast-bottom-full-width div.toast {
+        margin: 0 10px 10px;
+        width: calc(100% - 20px);
+    }
+
+    .toast {
+        opacity: 1 !important;
+        background-image: none !important;
+        border-radius: $border-radius;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        &:before {
+            font-family: FontAwesome;
+            font-size: 25px;
+            line-height: 20px;
+            float: left;
+            color: #ffffff;
+            padding-right: 10px;
+            margin: auto 0 auto -36px;
+        }
+
+        .toaster-icon {
+            display: none;
+        }
+
+        .toast-message {
+            p {
+                margin-bottom: 0.5rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &.toast-danger, &.toast-error {
+            background-image: none !important;
+
+            @include themify($themes) {
+                background-color: themed('dangerColor');
+            }
+
+            &:before {
+                content: "\f0e7";
+                margin-left: -30px;
+            }
+        }
+
+        &.toast-warning {
+            background-image: none !important;
+
+            @include themify($themes) {
+                background-color: themed('warningColor');
+            }
+
+            &:before {
+                content: "\f071";
+            }
+        }
+
+        &.toast-info {
+            background-image: none !important;
+
+            @include themify($themes) {
+                background-color: themed('infoColor');
+            }
+
+            &:before {
+                content: "\f05a";
+            }
+        }
+
+        &.toast-success {
+            background-image: none !important;
+
+            @include themify($themes) {
+                background-color: themed('successColor');
+            }
+
+            &:before {
+                content: "\f00C";
+            }
+        }
+    }
+}
+
+// SweetAlert
+
+.swal-modal {
+    border-radius: $border-radius;
+
+    @include themify($themes) {
+        background-color: themed('backgroundColorAlt');
+        color: themed('textColor');
+    }
+
+    .swal-icon {
+        margin: 15px auto 0 auto;
+    }
+
+    .swal-content {
+        margin: 15px 0 0 0;
+        padding: 0 10px;
+        font-size: $font-size-base;
+
+        .swal-text {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .swal-title, .swal-text {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        label.checkbox {
+            margin-top: 10px;
+            display: flex;
+            text-align: left;
+            align-items: top;
+
+            input {
+                margin: 3px 5px 0 1px;
+            }
+        }
+    }
+
+    i.swal-custom-icon {
+        display: block;
+        margin: 0 auto;
+        font-size: 35px;
+    }
+
+    .swal-title {
+        padding: 10px 10px 15px 10px;
+        margin: 0;
+        font-size: $font-size-large;
+        
+        @include themify($themes) {
+            color: themed('textColor');
+        }
+    }
+
+    .swal-text {
+        font-size: $font-size-base;
+
+        @include themify($themes) {
+            color: themed('textColor');
+        }
+    }
+
+    > .swal-text:first-child {
+        margin-top: 20px;
+    }
+
+    .swal-content__input, .swal-content__textarea {
+        border: 1px solid #000000;
+        border-radius: $border-radius;
+        @include themify($themes) {
+            border-color: themed('inputBorderColor');
+            color: themed('textColor');
+            background-color: themed('inputBackgroundColor');
+        }
+        &::-webkit-input-placeholder {
+            @include themify($themes) {
+                color: themed('inputPlaceholderColor');
+            }
+        }
+    }
+
+    .swal-footer {
+        padding: 15px 10px 10px 10px;
+        margin: 0;
+
+        .swal-button {
+            @extend .btn;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .swal-button--confirm {
+            @extend .btn.primary;
+        }
+    }
+}

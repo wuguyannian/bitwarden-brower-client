@@ -1,0 +1,1236 @@
+{
+  "appName": {
+    "message": "bitwarden"
+  },
+  "extName": {
+    "message": "bitwarden - Bezplatný správca hesiel",
+    "description": "Extension name"
+  },
+  "extDesc": {
+    "message": "bitwarden je bezpečný a bezplatný správca hesiel pre všetky vaše zariadenia.",
+    "description": "Extension description"
+  },
+  "loginOrCreateNewAccount": {
+    "message": "Prihláste sa, alebo vytvorte nový účet pre prístup k vášmu bezpečnému trezoru."
+  },
+  "createAccount": {
+    "message": "Vytvoriť účet"
+  },
+  "login": {
+    "message": "Prihlásiť sa"
+  },
+  "cancel": {
+    "message": "Zrušiť"
+  },
+  "close": {
+    "message": "Zavrieť"
+  },
+  "submit": {
+    "message": "Potvrdiť"
+  },
+  "emailAddress": {
+    "message": "Emailová adresa"
+  },
+  "masterPass": {
+    "message": "Hlavné heslo"
+  },
+  "masterPassDesc": {
+    "message": "Hlavné heslo je heslo, ktoré použijete na prístup k svojmu trezoru. Je veľmi dôležité, aby ste svoje hlavné heslo nezabudli. Neexistuje možnosť, ako heslo obnoviť v prípade, že ho zabudnete."
+  },
+  "masterPassHintDesc": {
+    "message": "Nápoveda k hlavnému heslu vám môže pomôcť spomenúť si na heslo, ak ho zabudnete."
+  },
+  "reTypeMasterPass": {
+    "message": "Znovu zadajte hlavné heslo"
+  },
+  "masterPassHint": {
+    "message": "Nápoveda k hlavnému heslu (voliteľné)"
+  },
+  "tab": {
+    "message": "Karta"
+  },
+  "myVault": {
+    "message": "Môj trezor"
+  },
+  "tools": {
+    "message": "Nástroje"
+  },
+  "settings": {
+    "message": "Nastavenia"
+  },
+  "currentTab": {
+    "message": "Aktuálna karta"
+  },
+  "copyPassword": {
+    "message": "Kopírovať heslo"
+  },
+  "copyNote": {
+    "message": "Kopírovať poznámku"
+  },
+  "copyUri": {
+    "message": "Kopírovať URI"
+  },
+  "copyUsername": {
+    "message": "Kopírovať používateľské meno"
+  },
+  "copyNumber": {
+    "message": "Kopírovať číslo"
+  },
+  "copySecurityCode": {
+    "message": "Kopírovať bezpečnostný kód"
+  },
+  "autoFill": {
+    "message": "Automatické vypĺňanie"
+  },
+  "generatePasswordCopied": {
+    "message": "Vygenerovať heslo (skopírované)"
+  },
+  "noMatchingLogins": {
+    "message": "Žiadne zodpovedajúce prihlasovacie údaje."
+  },
+  "vaultLocked": {
+    "message": "Trezor je zamknutý."
+  },
+  "autoFillInfo": {
+    "message": "Nie sú prístupné žiadne prihlasovacie údaje na automatické vyplnenie pre aktuálnu kartu."
+  },
+  "addLogin": {
+    "message": "Pridať prihlasovacie údaje"
+  },
+  "addItem": {
+    "message": "Pridať položku"
+  },
+  "passwordHint": {
+    "message": "Nápoveda k heslu"
+  },
+  "enterEmailToGetHint": {
+    "message": "Zadajte emailovú adresu na zaslanie nápovedy pre vaše hlavné heslo."
+  },
+  "getMasterPasswordHint": {
+    "message": "Získať nápovedu k hlavnému heslu"
+  },
+  "continue": {
+    "message": "Pokračovať"
+  },
+  "verificationCode": {
+    "message": "Overovací kód"
+  },
+  "account": {
+    "message": "Účet"
+  },
+  "changeMasterPassword": {
+    "message": "Zmeniť hlavné heslo"
+  },
+  "fingerprintPhrase": {
+    "message": "Fráza odtlačku",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Fráza odtlačku vašeho účtu",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "twoStepLogin": {
+    "message": "Dvojstupňové prihlásenie"
+  },
+  "logOut": {
+    "message": "Odhlásiť sa"
+  },
+  "about": {
+    "message": "O aplikácii"
+  },
+  "version": {
+    "message": "Verzia"
+  },
+  "save": {
+    "message": "Uložiť"
+  },
+  "addFolder": {
+    "message": "Pridať priečinok"
+  },
+  "name": {
+    "message": "Meno"
+  },
+  "editFolder": {
+    "message": "Upraviť priečinok"
+  },
+  "deleteFolder": {
+    "message": "Odstrániť priečinok"
+  },
+  "folders": {
+    "message": "Priečinky"
+  },
+  "noFolders": {
+    "message": "V zozname sa nenachádzajú žiadne priečinky."
+  },
+  "helpFeedback": {
+    "message": "Pomoc a spätná väzba"
+  },
+  "sync": {
+    "message": "Synchronizácia"
+  },
+  "syncVaultNow": {
+    "message": "Synchronizovať trezor teraz"
+  },
+  "lastSync": {
+    "message": "Posledná synchronizácia:"
+  },
+  "passGen": {
+    "message": "Generátor hesla"
+  },
+  "generator": {
+    "message": "Generátor",
+    "description": "Short for 'Password Generator'."
+  },
+  "passGenInfo": {
+    "message": "Automaticky generovať silné a unikátne heslá k prihlasovacím údajom."
+  },
+  "bitWebVault": {
+    "message": "bitwarden webový trezor"
+  },
+  "importItems": {
+    "message": "Importovať položky"
+  },
+  "select": {
+    "message": "Vybrať"
+  },
+  "generatePassword": {
+    "message": "Generovať heslo"
+  },
+  "regeneratePassword": {
+    "message": "Vygenerovať nové heslo"
+  },
+  "options": {
+    "message": "Možnosti"
+  },
+  "length": {
+    "message": "Dĺžka"
+  },
+  "numWords": {
+    "message": "Počet slov"
+  },
+  "wordSeparator": {
+    "message": "Oddeľovač slov"
+  },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
+  "minNumbers": {
+    "message": "Minimum číslic"
+  },
+  "minSpecial": {
+    "message": "Minimum špec. znakov"
+  },
+  "avoidAmbChar": {
+    "message": "Vyhnúť sa zameniteľným znakom"
+  },
+  "searchVault": {
+    "message": "Prehľadávať trezor"
+  },
+  "edit": {
+    "message": "Upraviť"
+  },
+  "view": {
+    "message": "Zobraziť"
+  },
+  "noItemsInList": {
+    "message": "Neexistujú žiadne položky na zobrazenie."
+  },
+  "itemInformation": {
+    "message": "Informácie o položke"
+  },
+  "username": {
+    "message": "Používateľské meno"
+  },
+  "password": {
+    "message": "Heslo"
+  },
+  "passphrase": {
+    "message": "Heslo"
+  },
+  "favorite": {
+    "message": "Obľúbené"
+  },
+  "notes": {
+    "message": "Poznámky"
+  },
+  "note": {
+    "message": "Poznámka"
+  },
+  "editItem": {
+    "message": "Upraviť položku"
+  },
+  "folder": {
+    "message": "Priečinok"
+  },
+  "deleteItem": {
+    "message": "Zmazať položku"
+  },
+  "viewItem": {
+    "message": "Zobraziť položku"
+  },
+  "launch": {
+    "message": "Spustiť"
+  },
+  "website": {
+    "message": "Webstránka"
+  },
+  "toggleVisibility": {
+    "message": "Prepnúť viditeľnosť"
+  },
+  "manage": {
+    "message": "Spravovať"
+  },
+  "other": {
+    "message": "Ostatné"
+  },
+  "rateExtension": {
+    "message": "Ohodnotiť rozšírenie"
+  },
+  "rateExtensionDesc": {
+    "message": "Prosíme, zvážte napísanie pozitívnej recenzie!"
+  },
+  "browserNotSupportClipboard": {
+    "message": "Váš webový prehliadač nepodporuje automatické kopírovanie do schránky. Kopírujte manuálne."
+  },
+  "verifyMasterPassword": {
+    "message": "Overenie hlavného hesla"
+  },
+  "yourVaultIsLocked": {
+    "message": "Váš trezor je uzamknutý. Overte sa hlavným heslom ak chcete pokračovať."
+  },
+  "unlock": {
+    "message": "Odomknúť"
+  },
+  "loggedInAsOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "invalidMasterPassword": {
+    "message": "Neplatné hlavné heslo"
+  },
+  "lockOptions": {
+    "message": "Možnosti uzamknutia"
+  },
+  "lockNow": {
+    "message": "Uzamknúť teraz"
+  },
+  "immediately": {
+    "message": "Okamžite"
+  },
+  "tenSeconds": {
+    "message": "10 sekúnd"
+  },
+  "twentySeconds": {
+    "message": "20 sekúnd"
+  },
+  "thirtySeconds": {
+    "message": "30 sekúnd"
+  },
+  "oneMinute": {
+    "message": "1 minúta"
+  },
+  "twoMinutes": {
+    "message": "2 minúty"
+  },
+  "fiveMinutes": {
+    "message": "5 minút"
+  },
+  "fifteenMinutes": {
+    "message": "15 minút"
+  },
+  "thirtyMinutes": {
+    "message": "30 minút"
+  },
+  "oneHour": {
+    "message": "1 hodina"
+  },
+  "fourHours": {
+    "message": "4 hodiny"
+  },
+  "onLocked": {
+    "message": "Pri uzamknutí"
+  },
+  "onRestart": {
+    "message": "Po reštarte"
+  },
+  "never": {
+    "message": "Nikdy"
+  },
+  "security": {
+    "message": "Zabezpečenie"
+  },
+  "errorOccurred": {
+    "message": "Vyskytla sa chyba"
+  },
+  "emailRequired": {
+    "message": "Emailová adresa je povinná."
+  },
+  "invalidEmail": {
+    "message": "Neplatná emailová adresa."
+  },
+  "masterPassRequired": {
+    "message": "Hlavné heslo je povinné."
+  },
+  "masterPassLength": {
+    "message": "Hlavné heslo musí obsahovať aspoň 8 znakov."
+  },
+  "masterPassDoesntMatch": {
+    "message": "Potvrdenie hlavného hesla sa nezhoduje."
+  },
+  "newAccountCreated": {
+    "message": "Váš nový účet bol vytvorený! Teraz sa môžete prihlásiť."
+  },
+  "masterPassSent": {
+    "message": "Poslali sme vám email s nápovedou k hlavnému heslu."
+  },
+  "verificationCodeRequired": {
+    "message": "Overovací kód je povinný."
+  },
+  "valueCopied": {
+    "message": " skopírované",
+    "description": "Value has been copied to the clipboard.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "Password"
+      }
+    }
+  },
+  "autofillError": {
+    "message": "Na tejto stránke sa nedajú automaticky vyplniť prihlasovacie údaje. Namiesto toho skopírujte/vložte prihlasovacie údaje manuálne."
+  },
+  "loggedOut": {
+    "message": "Odhlásený"
+  },
+  "loginExpired": {
+    "message": "Vaša relácia vypršala."
+  },
+  "logOutConfirmation": {
+    "message": "Naozaj sa chcete odhlásiť?"
+  },
+  "yes": {
+    "message": "Áno"
+  },
+  "no": {
+    "message": "Nie"
+  },
+  "unexpectedError": {
+    "message": "Vyskytla sa neočakávaná chyba."
+  },
+  "nameRequired": {
+    "message": "Meno je povinné."
+  },
+  "addedFolder": {
+    "message": "Pridaný priečinok"
+  },
+  "changeMasterPass": {
+    "message": "Zmeniť hlavné heslo"
+  },
+  "changeMasterPasswordConfirmation": {
+    "message": "Teraz si môžete zmeniť svoje hlavné heslo vo webovom trezore bitwarden.com. Chcete navštíviť túto stránku teraz?"
+  },
+  "twoStepLoginConfirmation": {
+    "message": "Dvojstupňové prihlasovanie robí váš účet bezpečnejším vďaka vyžadovaniu bezpečnostného kódu z overovacej aplikácie vždy, keď sa prihlásite. Dvojstupňové prihlasovanie môžete povoliť vo webovom trezore bitwarden.com. Chcete navštíviť túto stránku teraz?"
+  },
+  "editedFolder": {
+    "message": "Priečinok upravený"
+  },
+  "deleteFolderConfirmation": {
+    "message": "Naozaj chcete odstrániť tento priečinok?"
+  },
+  "deletedFolder": {
+    "message": "Odstránený priečinok"
+  },
+  "gettingStartedTutorial": {
+    "message": "Začiatočnícka príručka"
+  },
+  "gettingStartedTutorialVideo": {
+    "message": "Sledujte našu začiatočnícku príručku, aby ste sa naučili, ako získať maximum z nášho rozšírenia prehliadača."
+  },
+  "syncingComplete": {
+    "message": "Synchronizácia kompletná"
+  },
+  "syncingFailed": {
+    "message": "Synchronizácia zlyhala"
+  },
+  "passwordCopied": {
+    "message": "Heslo skopírované"
+  },
+  "uri": {
+    "message": "URI"
+  },
+  "uriPosition": {
+    "message": "URI $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "Nové URI"
+  },
+  "addedItem": {
+    "message": "Položka pridaná"
+  },
+  "editedItem": {
+    "message": "Položka upravená"
+  },
+  "deleteItemConfirmation": {
+    "message": "Naozaj chcete odstrániť túto položku?"
+  },
+  "deletedItem": {
+    "message": "Položka odstránená"
+  },
+  "overwritePassword": {
+    "message": "Prepísať heslo"
+  },
+  "overwritePasswordConfirmation": {
+    "message": "Naozaj chcete prepísať aktuálne heslo?"
+  },
+  "searchFolder": {
+    "message": "Prehľadávať priečinok"
+  },
+  "searchCollection": {
+    "message": "Vyhľadať zbierku"
+  },
+  "searchType": {
+    "message": "Typ vyhľadávania"
+  },
+  "noneFolder": {
+    "message": "Žiadny priečinok",
+    "description": "This is the folder for uncategorized items"
+  },
+  "disableAddLoginNotification": {
+    "message": "Vypnúť notifikáciu Pridať prihlasovacie údaje"
+  },
+  "addLoginNotificationDesc": {
+    "message": "\"Notifikácia Pridať prihlasovacie údaje\" vás automaticky upozorní na uloženie nových údajov do vášho trezoru vždy, keď sa s nimi prihlasujete poprvýkrát."
+  },
+  "dontShowCardsCurrentTab": {
+    "message": "Nezobrazovať platobné karty na stránke \"Aktuálna karta\""
+  },
+  "dontShowCardsCurrentTabDesc": {
+    "message": "Položky kariet sa zobrazujú na stránke „Aktuálna karta“ pre ľahšie automatické vypĺňanie."
+  },
+  "dontShowIdentitiesCurrentTab": {
+    "message": "Nezobrazovať identity na stránke Karta"
+  },
+  "dontShowIdentitiesCurrentTabDesc": {
+    "message": "Identity z vášho trezoru sa zobrazujú na stránke \"Aktuálna karta\" pre ľahké automatické vypĺňanie."
+  },
+  "clearClipboard": {
+    "message": "Vymazať schránku",
+    "description": "Clipboard is the operating system thing where you copy/paste data to on your device."
+  },
+  "clearClipboardDesc": {
+    "message": "Automaticky vymazať skopírované hodnoty zo schránky.",
+    "description": "Clipboard is the operating system thing where you copy/paste data to on your device."
+  },
+  "notificationAddDesc": {
+    "message": "Má si bitwarden zapamätať toto heslo?"
+  },
+  "notificationAddSave": {
+    "message": "Áno, uložiť teraz"
+  },
+  "notificationNeverSave": {
+    "message": "Nikdy pre túto stránku"
+  },
+  "disableChangedPasswordNotification": {
+    "message": "Vypnúť oznámenie o zmene hesla"
+  },
+  "disableChangedPasswordNotificationDesc": {
+    "message": "Oznámenie o zmene hesla sa vás automaticky opýta na aktualizáciu prihlasovacích údajov vo vašom trezore vždy, keď zistí, že ste ho zmenili na stránke."
+  },
+  "notificationChangeDesc": {
+    "message": "Chcete aktualizovať toto heslo v Bitwarden?"
+  },
+  "notificationChangeSave": {
+    "message": "Áno, aktualizovať"
+  },
+  "disableContextMenuItem": {
+    "message": "Vypnúť možnosti kontextového menu"
+  },
+  "disableContextMenuItemDesc": {
+    "message": "Možnosti kontextového menu ponúkajú rýchly prístup k prihlasovacím údajom a generovaniu hesiel pre stránku vo vašej aktuálnej karte."
+  },
+  "defaultUriMatchDetection": {
+    "message": "Predvolené mapovanie",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "defaultUriMatchDetectionDesc": {
+    "message": "Vyberte si predvolený spôsob mapovania, ktorý bude použitý pre prihlasovacie údaje pri využití funkcí ako je napríklad automatické vypĺňanie hesiel."
+  },
+  "theme": {
+    "message": "Motív"
+  },
+  "themeDesc": {
+    "message": "Zmeniť motív aplikácie."
+  },
+  "dark": {
+    "message": "Tmavý",
+    "description": "Dark color"
+  },
+  "light": {
+    "message": "Svetlý",
+    "description": "Light color"
+  },
+  "exportVault": {
+    "message": "Export trezoru"
+  },
+  "fileFormat": {
+    "message": "Formát Súboru"
+  },
+  "warning": {
+    "message": "UPOZORNENIE",
+    "description": "WARNING (should stay in capitalized letters if the language permits)"
+  },
+  "exportWarningDesc": {
+    "message": "Tento export obsahuje vaše dáta v nešifrovanom formáte. Nemali by ste ich ukladať, ani posielať cez nezabezpečené kanály (napr. email). Okamžite ho odstráňte, keď ho prestanete používať."
+  },
+  "exportMasterPassword": {
+    "message": "Zadajte vaše hlavné heslo pre export údajov trezoru."
+  },
+  "shared": {
+    "message": "Zdieľané"
+  },
+  "shareVault": {
+    "message": "Zdieľať trezor"
+  },
+  "shareVaultConfirmation": {
+    "message": "Bitwarden vám umožňuje zdieľať váš trezor s ostatnými ak používate konto v Organizácii. Chcete navštíviť stránku bitwarden.com a dozvedieť sa viac?"
+  },
+  "shareItem": {
+    "message": "Zdieľať položku"
+  },
+  "share": {
+    "message": "Zdieľať"
+  },
+  "sharedItem": {
+    "message": "Položka zdieľaná"
+  },
+  "shareDesc": {
+    "message": "Vyberte organizáciu s ktorou chcete zdieľať túto položku. Zdieľanie presunie vlastníctvo položky na organizáciu. Po zdieľaní už nebudete priamy vlastník položky."
+  },
+  "learnMore": {
+    "message": "Zistiť viac"
+  },
+  "authenticatorKeyTotp": {
+    "message": "Kľúč overovateľa (TOTP)"
+  },
+  "verificationCodeTotp": {
+    "message": "Overovací kód (TOTP)"
+  },
+  "copyVerificationCode": {
+    "message": "Kopírovať overovací kód"
+  },
+  "attachments": {
+    "message": "Prílohy"
+  },
+  "deleteAttachment": {
+    "message": "Odstrániť prílohu"
+  },
+  "deleteAttachmentConfirmation": {
+    "message": "Naozaj chcete odstrániť túto prílohu?"
+  },
+  "deletedAttachment": {
+    "message": "Odstránená príloha"
+  },
+  "newAttachment": {
+    "message": "Pridať novú prílohu"
+  },
+  "noAttachments": {
+    "message": "Žiadne prílohy."
+  },
+  "attachmentSaved": {
+    "message": "Príloha bola uložená."
+  },
+  "file": {
+    "message": "Súbor"
+  },
+  "selectFile": {
+    "message": "Vybrať súbor."
+  },
+  "maxFileSize": {
+    "message": "Maximálna veľkosť súboru je 100 MB."
+  },
+  "featureUnavailable": {
+    "message": "Funkcia nie je k dispozícii"
+  },
+  "updateKey": {
+    "message": "Túto funkciu nemožno použiť, pokým neaktualizujete svoj šifrovací kľúč."
+  },
+  "premiumMembership": {
+    "message": "Prémiové členstvo"
+  },
+  "premiumManage": {
+    "message": "Spravovať členstvo"
+  },
+  "premiumManageAlert": {
+    "message": "Svoje členstvo môžete spravovať vo webovom trezore bitwarden.com. Chcete navštíviť túto stránku teraz?"
+  },
+  "premiumRefresh": {
+    "message": "Obnoviť členstvo"
+  },
+  "premiumNotCurrentMember": {
+    "message": "Momentálne nie ste prémiovým členom."
+  },
+  "premiumSignUpAndGet": {
+    "message": "Zaregistrujte sa pre prémiové členstvo a získajte:"
+  },
+  "ppremiumSignUpStorage": {
+    "message": "1 GB šifrovaného úložiska."
+  },
+  "ppremiumSignUpTwoStep": {
+    "message": "Ďalšie možnosti dvojstupňového prihlásenia ako YubiKey, FIDO U2F a Duo."
+  },
+  "ppremiumSignUpReports": {
+    "message": "Správy o sile hesla, zabezpečení účtov a únikoch dát ktoré vám pomôžu udržať vaše kontá v bezpečí."
+  },
+  "ppremiumSignUpTotp": {
+    "message": "Generátor TOTP verifikačného kódu (2FA) pre prihlásenie do vášho trezora."
+  },
+  "ppremiumSignUpSupport": {
+    "message": "Prioritná zákaznícka podpora."
+  },
+  "ppremiumSignUpFuture": {
+    "message": "Všetky budúce prémiové funkcie. Viac už čoskoro!"
+  },
+  "premiumPurchase": {
+    "message": "Zakúpiť Prémiový účet"
+  },
+  "premiumPurchaseAlert": {
+    "message": "Svoje prémiové členstvo môžete zakúpiť vo webovom trezore bitwarden.com. Chcete navštíviť túto stránku teraz?"
+  },
+  "premiumCurrentMember": {
+    "message": "Ste prémiovým členom!"
+  },
+  "premiumCurrentMemberThanks": {
+    "message": "Ďakujeme, že podporujete bitwarden."
+  },
+  "premiumPrice": {
+    "message": "Všetko len za %price% /rok!",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      }
+    }
+  },
+  "refreshComplete": {
+    "message": "Obnova kompletná"
+  },
+  "disableAutoTotpCopy": {
+    "message": "Vypnúť automatické kopírovanie TOTP"
+  },
+  "disableAutoTotpCopyDesc": {
+    "message": "Ak je kľúč overovateľa spojený s vašim prihlásením, TOTP verifikačný kód bude automaticky skopírovaný do schránky vždy, keď použijete automatické vypĺňanie."
+  },
+  "premiumRequired": {
+    "message": "Vyžaduje prémiový účet"
+  },
+  "premiumRequiredDesc": {
+    "message": "Pre použitie tejto funkcie je potrebné prémiové členstvo."
+  },
+  "enterVerificationCodeApp": {
+    "message": "Zadajte 6-miestny verifikačný kód z vašej overovacej aplikácie."
+  },
+  "enterVerificationCodeEmail": {
+    "message": "Zadajte 6-miestny verifikačný kód, ktorý vám bol zaslaný emailom",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "verificationCodeEmailSent": {
+    "message": "Overovací e-mail odoslaný na $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "rememberMe": {
+    "message": "Zapamätať si ma"
+  },
+  "sendVerificationCodeEmailAgain": {
+    "message": "Znovu zaslať overovací kód emailom"
+  },
+  "useAnotherTwoStepMethod": {
+    "message": "Použiť inú dvojstupňovú metódu prihlásenia"
+  },
+  "insertYubiKey": {
+    "message": "Vložte váš YubiKey do USB portu počítača a stlačte jeho tlačidlo."
+  },
+  "insertU2f": {
+    "message": "Vložte váš bezpečnostný kľúč do USB portu počítača. Ak má tlačidlo, stlačte ho."
+  },
+  "loginUnavailable": {
+    "message": "Prihlasovací údaj nedostupný"
+  },
+  "noTwoStepProviders": {
+    "message": "Tento účet má povolené dvojstupňové prihlásenie, ale žiadny z nakonfigurovaných poskytovateľov nie je podporovaný týmto prehliadačom."
+  },
+  "noTwoStepProviders2": {
+    "message": "Prosím, použite podporovaný prehliadač (napríklad Chrome) a/alebo pridajte iných poskytovateľov, ktorí sú lepšie podporovaní prehliadačmi (ako napríklad overovacia aplikácia)."
+  },
+  "twoStepOptions": {
+    "message": "Možnosti dvojstupňového prihlásenia"
+  },
+  "recoveryCodeDesc": {
+    "message": "Stratili ste prístup ku všetkým vašim dvojstupňovým poskytovateľom? Použite váš záchranný kód pre vypnutie všetkých poskytovateľov vo vašom účte."
+  },
+  "recoveryCodeTitle": {
+    "message": "Záchranný kód"
+  },
+  "authenticatorAppTitle": {
+    "message": "Overovacia aplikácia"
+  },
+  "authenticatorAppDesc": {
+    "message": "Použite overovaciu aplikáciu (napríklad Authy alebo Google Authenticator) na generovanie časovo obmedzených overovacích kódov.",
+    "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
+  },
+  "yubiKeyTitle": {
+    "message": "YubiKey OTP bezpečnostný kľúč"
+  },
+  "yubiKeyDesc": {
+    "message": "Použiť YubiKey pre prístup k vášmu účtu. Pracuje s YubiKey 4, 4 Nano, 4C a s NEO zariadeniami."
+  },
+  "duoDesc": {
+    "message": "Overiť s Duo Security použitím Duo Mobile aplikácie, SMS, telefonátu alebo U2F bezpečnostným kľúčom.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "duoOrganizationDesc": {
+    "message": "Overiť s Duo Security vašej organizácie použitím Duo Mobile aplikácie, SMS, telefonátu alebo U2F bezpečnostným kľúčom.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "u2fDesc": {
+    "message": "Použiť akýkoľvek FIDO U2F bezpečnostný kľúč pre prístup k vášmu účtu."
+  },
+  "u2fTitle": {
+    "message": "FIDO U2F bezpečnostný kľúč"
+  },
+  "emailTitle": {
+    "message": "Email"
+  },
+  "emailDesc": {
+    "message": "Verifikačné kódy vám budú zaslané emailom."
+  },
+  "selfHostedEnvironment": {
+    "message": "Sebou hosťované prostredie"
+  },
+  "selfHostedEnvironmentFooter": {
+    "message": "Špecifikujte základnú URL lokálne hosťovanej inštalácie bitwarden."
+  },
+  "customEnvironment": {
+    "message": "Vlastné prostredie"
+  },
+  "customEnvironmentFooter": {
+    "message": "Pre pokročilých používateľov. Môžete špecifikovať základnú URL pre každú službu nezávisle."
+  },
+  "baseUrl": {
+    "message": "URL servera"
+  },
+  "apiUrl": {
+    "message": "URL API servera"
+  },
+  "webVaultUrl": {
+    "message": "URL servera webového trezora"
+  },
+  "identityUrl": {
+    "message": "URL servera identít"
+  },
+  "notificationsUrl": {
+    "message": "URL adresa servera pre oznámenia"
+  },
+  "iconsUrl": {
+    "message": "URL servera ikôn"
+  },
+  "environmentSaved": {
+    "message": "URL prostredia boli uložené."
+  },
+  "enableAutoFillOnPageLoad": {
+    "message": "Povoliť automatické vypĺňanie pri načítaní stránky"
+  },
+  "enableAutoFillOnPageLoadDesc": {
+    "message": "Ak je prihlasovací formulár detegovaný, automaticky vykonať vypĺňanie pri načítaní stránky."
+  },
+  "experimentalFeature": {
+    "message": "Toto je zatiaľ experimentálna funkcia. Použite na vlastné riziko."
+  },
+  "commandAutofillDesc": {
+    "message": "Automaticky vyplniť naposledy použité prihlasovacie údaje pre túto stránku."
+  },
+  "commandGeneratePasswordDesc": {
+    "message": "Vygenerovať a skopírovať nové náhodné heslo do schránky."
+  },
+  "privateModeMessage": {
+    "message": "Bohužiaľ, toto okno nie je dostupné v privátnom režime prehliadača."
+  },
+  "customFields": {
+    "message": "Vlastné polia"
+  },
+  "copyValue": {
+    "message": "Kopírovať hodnotu"
+  },
+  "value": {
+    "message": "Hodnota"
+  },
+  "newCustomField": {
+    "message": "Nové vlastné pole"
+  },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
+  "cfTypeText": {
+    "message": "Text"
+  },
+  "cfTypeHidden": {
+    "message": "Skryté"
+  },
+  "cfTypeBoolean": {
+    "message": "Boolean"
+  },
+  "popup2faCloseMessage": {
+    "message": "Kliknutie mimo popup okna na prezretie vášho emailu pre overovací kód spôsobí zavretie tohto popupu. Chcete otvoriť tento popup v novom okne tak, aby sa nezavrel?"
+  },
+  "popupU2fCloseMessage": {
+    "message": "This browser cannot process U2F requests in this popup window. Do you want to open this popup in a new window so that you can log in using U2F?"
+  },
+  "disableFavicon": {
+    "message": "Nezobrazovať ikony stránok"
+  },
+  "disableFaviconDesc": {
+    "message": "Ikony stránok poskytujú rozoznateľný obrázok vedľa každého prihlasovacieho údaju vo webovom trezore."
+  },
+  "cardholderName": {
+    "message": "Meno vlastníka karty"
+  },
+  "number": {
+    "message": "Číslo"
+  },
+  "brand": {
+    "message": "Značka"
+  },
+  "expirationMonth": {
+    "message": "Mesiac expirácie"
+  },
+  "expirationYear": {
+    "message": "Rok expirácie"
+  },
+  "expiration": {
+    "message": "Expirácia"
+  },
+  "january": {
+    "message": "Január"
+  },
+  "february": {
+    "message": "Február"
+  },
+  "march": {
+    "message": "Marec"
+  },
+  "april": {
+    "message": "Apríl"
+  },
+  "may": {
+    "message": "Máj"
+  },
+  "june": {
+    "message": "Jún"
+  },
+  "july": {
+    "message": "Júl"
+  },
+  "august": {
+    "message": "August"
+  },
+  "september": {
+    "message": "September"
+  },
+  "october": {
+    "message": "Október"
+  },
+  "november": {
+    "message": "November"
+  },
+  "december": {
+    "message": "December"
+  },
+  "securityCode": {
+    "message": "Bezpečnostný kód"
+  },
+  "ex": {
+    "message": "napr."
+  },
+  "title": {
+    "message": "Oslovenie"
+  },
+  "mr": {
+    "message": "Pán"
+  },
+  "mrs": {
+    "message": "Pani"
+  },
+  "ms": {
+    "message": "Slečna"
+  },
+  "dr": {
+    "message": "Dr"
+  },
+  "firstName": {
+    "message": "Krstné meno"
+  },
+  "middleName": {
+    "message": "Druhé meno"
+  },
+  "lastName": {
+    "message": "Priezvisko"
+  },
+  "identityName": {
+    "message": "Názov identity"
+  },
+  "company": {
+    "message": "Spoločnosť"
+  },
+  "ssn": {
+    "message": "Číslo poistenca sociálnej poisťovne"
+  },
+  "passportNumber": {
+    "message": "Číslo pasu"
+  },
+  "licenseNumber": {
+    "message": "Číslo vodičského preukazu"
+  },
+  "email": {
+    "message": "Email"
+  },
+  "phone": {
+    "message": "Telefón"
+  },
+  "address": {
+    "message": "Adresa"
+  },
+  "address1": {
+    "message": "Adresa 1"
+  },
+  "address2": {
+    "message": "Adresa 2"
+  },
+  "address3": {
+    "message": "Adresa 3"
+  },
+  "cityTown": {
+    "message": "Mesto"
+  },
+  "stateProvince": {
+    "message": "Región"
+  },
+  "zipPostalCode": {
+    "message": "PSČ"
+  },
+  "country": {
+    "message": "Krajina"
+  },
+  "type": {
+    "message": "Typ"
+  },
+  "typeLogin": {
+    "message": "Prihlásenie"
+  },
+  "typeLogins": {
+    "message": "Prihlasovacie údaje"
+  },
+  "typeSecureNote": {
+    "message": "Zabezpečená poznámka"
+  },
+  "typeCard": {
+    "message": "Karta"
+  },
+  "typeIdentity": {
+    "message": "Identita"
+  },
+  "passwordHistory": {
+    "message": "História hesla"
+  },
+  "back": {
+    "message": "Späť"
+  },
+  "collections": {
+    "message": "Zbierky"
+  },
+  "favorites": {
+    "message": "Obľúbené"
+  },
+  "popOutNewWindow": {
+    "message": "Otvoriť v novom okne"
+  },
+  "refresh": {
+    "message": "Obnoviť"
+  },
+  "cards": {
+    "message": "Karty"
+  },
+  "identities": {
+    "message": "Identity"
+  },
+  "logins": {
+    "message": "Prihlasovacie údaje"
+  },
+  "secureNotes": {
+    "message": "Zabezpečené poznámky"
+  },
+  "clear": {
+    "message": "Vyčistiť",
+    "description": "To clear something out. example: To clear browser history."
+  },
+  "checkPassword": {
+    "message": "Overiť či došlo k úniku hesla."
+  },
+  "passwordExposed": {
+    "message": "Toto heslo uniklo $VALUE$ krát. Mali by ste ho zmeniť.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "Heslo nebolo nájdene v žiadnom úniku dát. Malo by byť bezpečné."
+  },
+  "baseDomain": {
+    "message": "Základná doména"
+  },
+  "host": {
+    "message": "Hostiteľ",
+    "description": "A URL's host value. For example, the host of https://sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "Presný"
+  },
+  "startsWith": {
+    "message": "Začína na"
+  },
+  "regEx": {
+    "message": "Regulárny výraz",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "Spôsob mapovania",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "Predvolené mapovanie",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "toggleOptions": {
+    "message": "Voľby prepínača"
+  },
+  "organization": {
+    "message": "Organizácia",
+    "description": "An entity of multiple related people (ex. a team or business organization)."
+  },
+  "types": {
+    "message": "Typy"
+  },
+  "allItems": {
+    "message": "Všetky položky"
+  },
+  "noPasswordsInList": {
+    "message": "Neboli nájdené žiadne heslá."
+  },
+  "remove": {
+    "message": "Odstrániť"
+  },
+  "default": {
+    "message": "Predvolené"
+  },
+  "dateUpdated": {
+    "message": "Aktualizované",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "Heslo bolo aktualizované",
+    "description": "ex. Date this password was updated"
+  },
+  "neverLockWarning": {
+    "message": "Ste si istí, že chcete použiť možnosť \"Nikdy\"? Táto predvoľba ukladá šifrovací kľúč od trezora priamo na zariadení. Ak použijete túto možnosť, mali by ste svoje zariadenie náležite zabezpečiť."
+  },
+  "noOrganizationsList": {
+    "message": "Nie ste členom žiadnej organizácie. Organizácie umožňujú bezpečne zdieľať položky s ostatnými používateľmi."
+  },
+  "noCollectionsInList": {
+    "message": "Neexistujú žiadne zbierky na zobrazenie."
+  },
+  "ownership": {
+    "message": "Vlastníctvo"
+  },
+  "whoOwnsThisItem": {
+    "message": "Kto vlastní túto položku?"
+  },
+  "strong": {
+    "message": "Silné",
+    "description": "ex. A strong password. Scale: Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Dobré",
+    "description": "ex. A good password. Scale: Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Slabé",
+    "description": "ex. A weak password. Scale: Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Slabé hlavné heslo"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Hlavné heslo ktoré ste zadali je slabé. Mali by ste použiť silné heslo (alebo frázu) aby ste spoľahlivo ochránili váš Bitwarden účet. Naozaj chcete použiť toto heslo?"
+  },
+  "pin": {
+    "message": "PIN",
+    "description": "PIN code. Ex. The short code (often numeric) that you use to unlock a device."
+  },
+  "unlockWithPin": {
+    "message": "Odomknúť s PIN"
+  },
+  "setYourPinCode": {
+    "message": "Nastaviť kód PIN na odomknutie Bitwarden. Nastavenie PIN sa vynuluje, ak úplne odhlásite z aplikácie."
+  },
+  "pinRequired": {
+    "message": "Kód PIN je povinný."
+  },
+  "invalidPin": {
+    "message": "Neplatný PIN kód."
+  },
+  "verifyPin": {
+    "message": "Overiť PIN"
+  },
+  "yourVaultIsLockedPinCode": {
+    "message": "Váš trezor je uzamknutý. Overte sa PIN kódom ak chcete pokračovať."
+  },
+  "lockWithMasterPassOnRestart": {
+    "message": "Pri reštarte prehliadača zamknúť s hlavným heslom"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
+  }
+}

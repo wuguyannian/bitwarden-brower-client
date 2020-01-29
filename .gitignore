@@ -1,0 +1,17 @@
+.vs
+.idea
+.DS_Store
+node_modules
+npm-debug.log
+vwd.webinfo
+css/
+dist/
+webfonts/
+*.crx
+*.pem
+*.zip
+build/
+build.safariextension/
+coverage/
+xcuserdata/
+*.hmap
