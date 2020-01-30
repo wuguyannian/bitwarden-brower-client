@@ -51,7 +51,12 @@
                 (click)="export()">
                 <div class="row-main">{{'exportVault' | i18n}}</div>
                 <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
-            </a>            
+            </a>        
+            <a class="box-content-row box-content-row-flex text-default" href="#" appStopClick appBlurClick
+                (click)="import()">
+                <div class="row-main">{{'importVault' | i18n}}</div>
+                <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
+            </a>           
         </div>
     </div>
     <div class="box list">

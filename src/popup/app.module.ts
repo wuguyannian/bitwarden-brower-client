@@ -28,6 +28,7 @@ import { PasswordGeneratorHistoryComponent } from './generator/password-generato
 import { PasswordGeneratorComponent } from './generator/password-generator.component';
 import { PrivateModeComponent } from './private-mode.component';
 import { ExportComponent } from './settings/export.component';
+import { ImportComponent } from './settings/import.component';
 import { FolderAddEditComponent } from './settings/folder-add-edit.component';
 import { FoldersComponent } from './settings/folders.component';
 import { OptionsComponent } from './settings/options.component';
@@ -172,6 +173,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         CurrentTabComponent,
         EnvironmentComponent,
         ExportComponent,
+        ImportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
         FoldersComponent,

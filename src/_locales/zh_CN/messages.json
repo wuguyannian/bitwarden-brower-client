@@ -593,6 +593,9 @@
   "exportVault": {
     "message": "导出密码库"
   },
+  "importVault": {
+    "message": "导入密码库"
+  },
   "fileFormat": {
     "message": "文件格式"
   },

@@ -593,6 +593,9 @@
   "exportVault": {
     "message": "匯出密碼庫"
   },
+  "importVault": {
+    "message": "導入密碼庫"
+  },
   "fileFormat": {
     "message": "檔案格式"
   },

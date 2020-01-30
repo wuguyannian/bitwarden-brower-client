@@ -219,16 +219,10 @@ export class SettingsComponent implements OnInit {
     }
 
     import() {
-        this.analytics.eventTrack.next({ action: 'Clicked Import Items' });
-        BrowserApi.createNewTab('https://help.bitwarden.com/article/import-data/');
+        this.router.navigate(['/import']);
     }
 
     export() {
-        if (this.platformUtilsService.isEdge()) {
-            BrowserApi.createNewTab('https://help.bitwarden.com/article/export-your-data/');
-            return;
-        }
-
         this.router.navigate(['/export']);
     }
 

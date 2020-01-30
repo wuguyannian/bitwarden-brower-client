@@ -593,6 +593,9 @@
   "exportVault": {
     "message": "Export Vault"
   },
+  "importVault": {
+    "message": "Import vault"
+  },
   "fileFormat": {
     "message": "File Format"
   },

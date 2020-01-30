@@ -22,6 +22,7 @@ import { PasswordGeneratorHistoryComponent } from './generator/password-generato
 import { PasswordGeneratorComponent } from './generator/password-generator.component';
 import { PrivateModeComponent } from './private-mode.component';
 import { ExportComponent } from './settings/export.component';
+import { ImportComponent } from './settings/import.component';
 import { FolderAddEditComponent } from './settings/folder-add-edit.component';
 import { FoldersComponent } from './settings/folders.component';
 import { OptionsComponent } from './settings/options.component';
@@ -162,6 +163,12 @@ const routes: Routes = [
         component: ExportComponent,
         canActivate: [AuthGuardService],
         data: { state: 'export' },
+    },
+    {
+        path: 'import',
+        component: ImportComponent,
+        canActivate: [AuthGuardService],
+        data: { state: 'import' },
     },
     {
         path: 'folders',
