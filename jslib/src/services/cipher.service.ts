@@ -412,21 +412,22 @@ export class CipherService implements CipherServiceAbstraction {
     }
 
     async getAllFromApiForOrganization(organizationId: string): Promise<CipherView[]> {
-        const ciphers = await this.apiService.getCiphersOrganization(organizationId);
-        if (ciphers != null && ciphers.data != null && ciphers.data.length) {
-            const decCiphers: CipherView[] = [];
-            const promises: any[] = [];
-            ciphers.data.forEach((r) => {
-                const data = new CipherData(r);
-                const cipher = new Cipher(data);
-                promises.push(cipher.decrypt().then((c) => decCiphers.push(c)));
-            });
-            await Promise.all(promises);
-            decCiphers.sort(this.getLocaleSortingFunction());
-            return decCiphers;
-        } else {
-            return [];
-        }
+        // const ciphers = await this.apiService.getCiphersOrganization(organizationId);
+        // if (ciphers != null && ciphers.data != null && ciphers.data.length) {
+        //     const decCiphers: CipherView[] = [];
+        //     const promises: any[] = [];
+        //     ciphers.data.forEach((r) => {
+        //         const data = new CipherData(r);
+        //         const cipher = new Cipher(data);
+        //         promises.push(cipher.decrypt().then((c) => decCiphers.push(c)));
+        //     });
+        //     await Promise.all(promises);
+        //     decCiphers.sort(this.getLocaleSortingFunction());
+        //     return decCiphers;
+        // } else {
+        //     return [];
+        // }
+        return [];
     }
 
     async getLastUsedForUrl(url: string): Promise<CipherView> {
@@ -484,17 +485,28 @@ export class CipherService implements CipherServiceAbstraction {
     async saveWithServer(cipher: Cipher): Promise<any> {
         let response: CipherResponse;
         if (cipher.id == null) {
+            // if (cipher.collectionIds != null) {
+            //     const request = new CipherCreateRequest(cipher);
+            //     response = await this.apiService.postCipherCreate(request);
+            // } else {
+            //     const request = new CipherRequest(cipher);
+            //     response = await this.apiService.postCipher(request);
+            // }
             if (cipher.collectionIds != null) {
                 const request = new CipherCreateRequest(cipher);
-                response = await this.apiService.postCipherCreate(request);
+                response = new CipherResponse(request);
+                
             } else {
                 const request = new CipherRequest(cipher);
-                response = await this.apiService.postCipher(request);
-            }
+                response = new CipherResponse(request);
+            }            
+            response.id = Utils.GenerateComb();
             cipher.id = response.id;
         } else {
             const request = new CipherRequest(cipher);
-            response = await this.apiService.putCipher(cipher.id, request);
+            //response = await this.apiService.putCipher(cipher.id, request);
+            response = new CipherResponse(request);
+            response.id = cipher.id;
         }
 
         const userId = await this.userService.getUserId();
@@ -517,7 +529,7 @@ export class CipherService implements CipherServiceAbstraction {
         cipher.collectionIds = collectionIds;
         const encCipher = await this.encrypt(cipher);
         const request = new CipherShareRequest(encCipher);
-        const response = await this.apiService.putShareCipher(cipher.id, request);
+        const response = new  CipherResponse(request);//await this.apiService.putShareCipher(cipher.id, request);
         const userId = await this.userService.getUserId();
         const data = new CipherData(response, userId, collectionIds);
         await this.upsert(data);
@@ -534,8 +546,8 @@ export class CipherService implements CipherServiceAbstraction {
             }));
         }
         await Promise.all(promises);
-        const request = new CipherBulkShareRequest(encCiphers, collectionIds);
-        await this.apiService.putShareCiphers(request);
+        // const request = new CipherBulkShareRequest(encCiphers, collectionIds);
+        // await this.apiService.putShareCiphers(request);
         const userId = await this.userService.getUserId();
         await this.upsert(encCiphers.map((c) => c.toCipherData(userId)));
     }
@@ -605,7 +617,7 @@ export class CipherService implements CipherServiceAbstraction {
 
     async saveCollectionsWithServer(cipher: Cipher): Promise<any> {
         const request = new CipherCollectionsRequest(cipher.collectionIds);
-        await this.apiService.putCipherCollections(cipher.id, request);
+        //await this.apiService.putCipherCollections(cipher.id, request);
         const userId = await this.userService.getUserId();
         const data = cipher.toCipherData(userId);
         await this.upsert(data);
@@ -644,7 +656,7 @@ export class CipherService implements CipherServiceAbstraction {
     }
 
     async moveManyWithServer(ids: string[], folderId: string): Promise<any> {
-        await this.apiService.putMoveCiphers(new CipherBulkMoveRequest(ids, folderId));
+        //await this.apiService.putMoveCiphers(new CipherBulkMoveRequest(ids, folderId));
 
         const userId = await this.userService.getUserId();
         let ciphers = await this.storageService.get<{ [id: string]: CipherData; }>(
@@ -687,12 +699,12 @@ export class CipherService implements CipherServiceAbstraction {
     }
 
     async deleteWithServer(id: string): Promise<any> {
-        await this.apiService.deleteCipher(id);
+        // await this.apiService.deleteCipher(id);
         await this.delete(id);
     }
 
     async deleteManyWithServer(ids: string[]): Promise<any> {
-        await this.apiService.deleteManyCiphers(new CipherBulkDeleteRequest(ids));
+        // await this.apiService.deleteManyCiphers(new CipherBulkDeleteRequest(ids));
         await this.delete(ids);
     }
 
@@ -716,11 +728,11 @@ export class CipherService implements CipherServiceAbstraction {
     }
 
     async deleteAttachmentWithServer(id: string, attachmentId: string): Promise<void> {
-        try {
-            await this.apiService.deleteCipherAttachment(id, attachmentId);
-        } catch (e) {
-            return Promise.reject((e as ErrorResponse).getSingleMessage());
-        }
+        // try {
+        //     await this.apiService.deleteCipherAttachment(id, attachmentId);
+        // } catch (e) {
+        //     return Promise.reject((e as ErrorResponse).getSingleMessage());
+        // }
         await this.deleteAttachment(id, attachmentId);
     }
 
@@ -794,42 +806,42 @@ export class CipherService implements CipherServiceAbstraction {
 
     private async shareAttachmentWithServer(attachmentView: AttachmentView, cipherId: string,
         organizationId: string): Promise<any> {
-        const attachmentResponse = await this.apiService.nativeFetch(
-            new Request(attachmentView.url, { cache: 'no-store' }));
-        if (attachmentResponse.status !== 200) {
-            throw Error('Failed to download attachment: ' + attachmentResponse.status.toString());
-        }
+        // const attachmentResponse = await this.apiService.nativeFetch(
+        //     new Request(attachmentView.url, { cache: 'no-store' }));
+        // if (attachmentResponse.status !== 200) {
+        //     throw Error('Failed to download attachment: ' + attachmentResponse.status.toString());
+        // }
 
-        const buf = await attachmentResponse.arrayBuffer();
-        const decBuf = await this.cryptoService.decryptFromBytes(buf, null);
-        const key = await this.cryptoService.getOrgKey(organizationId);
-        const encFileName = await this.cryptoService.encrypt(attachmentView.fileName, key);
+        // const buf = await attachmentResponse.arrayBuffer();
+        // const decBuf = await this.cryptoService.decryptFromBytes(buf, null);
+        // const key = await this.cryptoService.getOrgKey(organizationId);
+        // const encFileName = await this.cryptoService.encrypt(attachmentView.fileName, key);
 
-        const dataEncKey = await this.cryptoService.makeEncKey(key);
-        const encData = await this.cryptoService.encryptToBytes(decBuf, dataEncKey[0]);
+        // const dataEncKey = await this.cryptoService.makeEncKey(key);
+        // const encData = await this.cryptoService.encryptToBytes(decBuf, dataEncKey[0]);
 
-        const fd = new FormData();
-        try {
-            const blob = new Blob([encData], { type: 'application/octet-stream' });
-            fd.append('key', dataEncKey[1].encryptedString);
-            fd.append('data', blob, encFileName.encryptedString);
-        } catch (e) {
-            if (Utils.isNode && !Utils.isBrowser) {
-                fd.append('key', dataEncKey[1].encryptedString);
-                fd.append('data', Buffer.from(encData) as any, {
-                    filepath: encFileName.encryptedString,
-                    contentType: 'application/octet-stream',
-                } as any);
-            } else {
-                throw e;
-            }
-        }
+        // const fd = new FormData();
+        // try {
+        //     const blob = new Blob([encData], { type: 'application/octet-stream' });
+        //     fd.append('key', dataEncKey[1].encryptedString);
+        //     fd.append('data', blob, encFileName.encryptedString);
+        // } catch (e) {
+        //     if (Utils.isNode && !Utils.isBrowser) {
+        //         fd.append('key', dataEncKey[1].encryptedString);
+        //         fd.append('data', Buffer.from(encData) as any, {
+        //             filepath: encFileName.encryptedString,
+        //             contentType: 'application/octet-stream',
+        //         } as any);
+        //     } else {
+        //         throw e;
+        //     }
+        // }
 
-        try {
-            await this.apiService.postShareCipherAttachment(cipherId, attachmentView.id, fd, organizationId);
-        } catch (e) {
-            throw new Error((e as ErrorResponse).getSingleMessage());
-        }
+        // try {
+        //     await this.apiService.postShareCipherAttachment(cipherId, attachmentView.id, fd, organizationId);
+        // } catch (e) {
+        //     throw new Error((e as ErrorResponse).getSingleMessage());
+        // }
     }
 
     private async encryptObjProperty<V extends View, D extends Domain>(model: V, obj: D,

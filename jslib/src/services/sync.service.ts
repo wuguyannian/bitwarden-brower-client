@@ -115,13 +115,13 @@ export class SyncService implements SyncServiceAbstraction {
                 const localFolder = await this.folderService.get(notification.id);
                 if ((!isEdit && localFolder == null) ||
                     (isEdit && localFolder != null && localFolder.revisionDate < notification.revisionDate)) {
-                    const remoteFolder = await this.apiService.getFolder(notification.id);
-                    if (remoteFolder != null) {
-                        const userId = await this.userService.getUserId();
-                        await this.folderService.upsert(new FolderData(remoteFolder, userId));
-                        this.messagingService.send('syncedUpsertedFolder', { folderId: notification.id });
-                        return this.syncCompleted(true);
-                    }
+                    // const remoteFolder = await this.apiService.getFolder(notification.id);
+                    // if (remoteFolder != null) {
+                    //     const userId = await this.userService.getUserId();
+                    //     await this.folderService.upsert(new FolderData(remoteFolder, userId));
+                    //     this.messagingService.send('syncedUpsertedFolder', { folderId: notification.id });
+                    //     return this.syncCompleted(true);
+                    // }
                 }
             } catch { }
         }
@@ -178,13 +178,13 @@ export class SyncService implements SyncServiceAbstraction {
                 }
 
                 if (shouldUpdate) {
-                    const remoteCipher = await this.apiService.getCipher(notification.id);
-                    if (remoteCipher != null) {
-                        const userId = await this.userService.getUserId();
-                        await this.cipherService.upsert(new CipherData(remoteCipher, userId));
-                        this.messagingService.send('syncedUpsertedCipher', { cipherId: notification.id });
-                        return this.syncCompleted(true);
-                    }
+                    // const remoteCipher = await this.apiService.getCipher(notification.id);
+                    // if (remoteCipher != null) {
+                    //     const userId = await this.userService.getUserId();
+                    //     await this.cipherService.upsert(new CipherData(remoteCipher, userId));
+                    //     this.messagingService.send('syncedUpsertedCipher', { cipherId: notification.id });
+                    //     return this.syncCompleted(true);
+                    // }
                 }
             } catch (e) {
                 if (e != null && e.statusCode === 404 && isEdit) {
@@ -231,10 +231,10 @@ export class SyncService implements SyncServiceAbstraction {
         }
 
         try {
-            const response = await this.apiService.getAccountRevisionDate();
-            if (new Date(response) <= lastSync) {
-                return [false, false];
-            }
+            // const response = await this.apiService.getAccountRevisionDate();
+            // if (new Date(response) <= lastSync) {
+            //     return [false, false];
+            // }
             return [true, false];
         } catch (e) {
             return [false, true];

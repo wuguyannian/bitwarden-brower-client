@@ -121,10 +121,14 @@ export class FolderService implements FolderServiceAbstraction {
 
         let response: FolderResponse;
         if (folder.id == null) {
-            response = await this.apiService.postFolder(request);
+            // response = await this.apiService.postFolder(request);
+            response = new FolderResponse(request);
+            response.id = Utils.GenerateComb();
             folder.id = response.id;
         } else {
-            response = await this.apiService.putFolder(folder.id, request);
+            //response = await this.apiService.putFolder(folder.id, request);
+            response = new FolderResponse(request);
+            response.id = folder.id;
         }
 
         const userId = await this.userService.getUserId();
@@ -203,7 +207,7 @@ export class FolderService implements FolderServiceAbstraction {
     }
 
     async deleteWithServer(id: string): Promise<any> {
-        await this.apiService.deleteFolder(id);
+        //await this.apiService.deleteFolder(id);
         await this.delete(id);
     }
 }

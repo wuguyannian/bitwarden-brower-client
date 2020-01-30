@@ -30,8 +30,7 @@ export class NotificationsService implements NotificationsServiceAbstraction {
         private lockService: LockService, private logoutCallback: () => Promise<void>) { }
 
     async init(environmentService: EnvironmentService): Promise<void> {
-        return;
-        // this.inited = false;
+        this.inited = false;
         // this.url = 'https://notifications.bitwarden.com';
         // if (environmentService.notificationsUrl != null) {
         //     this.url = environmentService.notificationsUrl;
@@ -69,40 +68,40 @@ export class NotificationsService implements NotificationsServiceAbstraction {
         //     this.connected = false;
         //     this.reconnect(true);
         // });
-        // this.inited = true;
-        // if (await this.isAuthedAndUnlocked()) {
-        //     await this.reconnect(false);
-        // }
+        this.inited = true;
+        if (await this.isAuthedAndUnlocked()) {
+            await this.reconnect(false);
+        }
     }
 
     async updateConnection(sync = false): Promise<void> {
-        // if (!this.inited) {
-        //     return;
-        // }
-        // try {
-        //     if (await this.isAuthedAndUnlocked()) {
-        //         await this.reconnect(sync);
-        //     } else {
-        //         await this.signalrConnection.stop();
-        //     }
-        // } catch (e) {
-        //     // tslint:disable-next-line
-        //     console.error(e.toString());
-        // }
+        if (!this.inited) {
+            return;
+        }
+        try {
+            if (await this.isAuthedAndUnlocked()) {
+                await this.reconnect(sync);
+            } else {
+                //await this.signalrConnection.stop();
+            }
+        } catch (e) {
+            // tslint:disable-next-line
+            console.error(e.toString());
+        }
     }
 
     async reconnectFromActivity(): Promise<void> {
-        // this.inactive = false;
-        // if (this.inited && !this.connected) {
-        //     await this.reconnect(true);
-        // }
+        this.inactive = false;
+        if (this.inited && !this.connected) {
+            await this.reconnect(true);
+        }
     }
 
     async disconnectFromInactivity(): Promise<void> {
-        // this.inactive = true;
-        // if (this.inited && this.connected) {
-        //     await this.signalrConnection.stop();
-        // }
+        this.inactive = true;
+        if (this.inited && this.connected) {
+            //await this.signalrConnection.stop();
+        }
     }
 
     private async processNotification(notification: NotificationResponse) {
@@ -148,7 +147,7 @@ export class NotificationsService implements NotificationsServiceAbstraction {
                     await this.apiService.refreshIdentityToken();
                     await this.syncService.fullSync(true);
                     // Stop so a reconnect can be made
-                    await this.signalrConnection.stop();
+                    //await this.signalrConnection.stop();
                 }
                 break;
             case NotificationType.LogOut:
@@ -175,7 +174,7 @@ export class NotificationsService implements NotificationsServiceAbstraction {
         }
 
         try {
-            await this.signalrConnection.start();
+            //await this.signalrConnection.start();
             this.connected = true;
             if (sync) {
                 await this.syncService.fullSync(false);
