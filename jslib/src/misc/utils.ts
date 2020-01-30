@@ -150,6 +150,48 @@ export class Utils {
         });
     }
 
+    // Generate GUID
+    static GenerateComb(): string {
+        function addZero(num:number):string {
+            if (num.toString() != 'NaN' && num >= 0 && num < 10) {
+                return '0' + Math.floor(num);
+            } else {
+                return num.toString();
+            }
+        }
+        function getGUIDData(date:Date):string {
+            return date.getFullYear() + addZero(date.getMonth() + 1) + addZero(date.getDay());
+        }
+        function getGUIDTime(date:Date):string {
+            return addZero(date.getHours()) + addZero(date.getMinutes()) + addZero(date.getSeconds()) + addZero(date.getMilliseconds() / 10);
+        }
+        function hexadecimal(num:string, x:number, y:number):string {
+            return parseInt(num, y).toString(x);
+        }
+        
+        function formatGUID(guidStr:string):string {
+            var str1:string = guidStr.slice(0, 8) + '-';
+            var str2:string = guidStr.slice(8, 12) + '-';
+            var str3:string = guidStr.slice(12, 16) + '-';
+            var str4:string = guidStr.slice(16, 20) + '-';
+            var str5:string = guidStr.slice(20);
+            return str1 + str2 + str3 + str4 + str5;
+        }
+        var date: Date = new Date();
+        var guidStr: string = '';
+        var sexadecimalDate = hexadecimal(getGUIDData(date), 16, 10);
+        var sexadecimalTime = hexadecimal(getGUIDTime(date), 16, 10);
+        for (var i = 0; i < 9; i++) {
+            guidStr += Math.floor(Math.random() * 16).toString(16);
+        }
+        guidStr += sexadecimalDate;
+        guidStr += sexadecimalTime;
+        while (guidStr.length < 32) {
+            guidStr += Math.floor(Math.random() * 16).toString(16);
+        }
+        return formatGUID(guidStr);
+    }
+
     static isGuid(id: string) {
         return RegExp(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/, 'i').test(id);
     }
