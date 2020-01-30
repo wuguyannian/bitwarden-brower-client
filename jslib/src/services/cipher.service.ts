@@ -328,16 +328,16 @@ export class CipherService implements CipherServiceAbstraction {
         const eqDomainsPromise = domain == null ? Promise.resolve([]) :
             this.settingsService.getEquivalentDomains().then((eqDomains: any[][]) => {
                 let matches: any[] = [];
-                eqDomains.forEach((eqDomain) => {
-                    if (eqDomain.length && eqDomain.indexOf(domain) >= 0) {
-                        matches = matches.concat(eqDomain);
-                    }
-                });
-
+                if (eqDomains != null && eqDomains.length > 0) {
+                    eqDomains.forEach((eqDomain) => {
+                        if (eqDomain.length && eqDomain.indexOf(domain) >= 0) {
+                            matches = matches.concat(eqDomain);
+                        }
+                    });                   
+                }
                 if (!matches.length) {
                     matches.push(domain);
                 }
-
                 return matches;
             });
 
@@ -432,7 +432,7 @@ export class CipherService implements CipherServiceAbstraction {
 
     async getLastUsedForUrl(url: string): Promise<CipherView> {
         const ciphers = await this.getAllDecryptedForUrl(url);
-        if (ciphers.length === 0) {
+        if (!ciphers || ciphers.length === 0) {
             return null;
         }
 
@@ -495,11 +495,11 @@ export class CipherService implements CipherServiceAbstraction {
             if (cipher.collectionIds != null) {
                 const request = new CipherCreateRequest(cipher);
                 response = new CipherResponse(request);
-                
+
             } else {
                 const request = new CipherRequest(cipher);
                 response = new CipherResponse(request);
-            }            
+            }
             response.id = Utils.GenerateComb();
             cipher.id = response.id;
         } else {
@@ -529,7 +529,7 @@ export class CipherService implements CipherServiceAbstraction {
         cipher.collectionIds = collectionIds;
         const encCipher = await this.encrypt(cipher);
         const request = new CipherShareRequest(encCipher);
-        const response = new  CipherResponse(request);//await this.apiService.putShareCipher(cipher.id, request);
+        const response = new CipherResponse(request);//await this.apiService.putShareCipher(cipher.id, request);
         const userId = await this.userService.getUserId();
         const data = new CipherData(response, userId, collectionIds);
         await this.upsert(data);

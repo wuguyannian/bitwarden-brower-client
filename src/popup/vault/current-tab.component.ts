@@ -211,22 +211,24 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
         this.loginCiphers = [];
         this.cardCiphers = [];
         this.identityCiphers = [];
-
-        ciphers.forEach((c) => {
-            switch (c.type) {
-                case CipherType.Login:
-                    this.loginCiphers.push(c);
-                    break;
-                case CipherType.Card:
-                    this.cardCiphers.push(c);
-                    break;
-                case CipherType.Identity:
-                    this.identityCiphers.push(c);
-                    break;
-                default:
-                    break;
-            }
-        });
+        if (ciphers != null && ciphers.length > 0)
+        {
+            ciphers.forEach((c) => {
+                switch (c.type) {
+                    case CipherType.Login:
+                        this.loginCiphers.push(c);
+                        break;
+                    case CipherType.Card:
+                        this.cardCiphers.push(c);
+                        break;
+                    case CipherType.Identity:
+                        this.identityCiphers.push(c);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
 
         this.loginCiphers = this.loginCiphers.sort((a, b) => this.cipherService.sortCiphersByLastUsedThenName(a, b));
         this.loaded = true;
