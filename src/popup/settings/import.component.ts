@@ -87,6 +87,11 @@ export class ImportComponent  {
         }
     }
 
+    togglePassword() {
+        this.platformUtilsService.eventTrack('Toggled Master Password on Export');
+        this.showPassword = !this.showPassword;
+        document.getElementById('masterPassword').focus();
+    }
     
     protected async collectEvent(): Promise<any> {
         await this.eventService.collect(EventType.User_ClientImportedVault);
