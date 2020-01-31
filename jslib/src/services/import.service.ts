@@ -155,8 +155,7 @@ export class ImportService implements ImportServiceAbstraction {
                     return new Error(this.i18nService.t('importFormatError'));
                 }
             }
-            await this.postImport(importResult, organizationId);
-            return null;
+            return await this.postImport(importResult, organizationId);
         } else {
             return new Error(this.i18nService.t('importFormatError'));
         }
@@ -281,23 +280,33 @@ export class ImportService implements ImportServiceAbstraction {
         }
     }
 
-    private async postImport(importResult: ImportResult, organizationId: string = null) {
+    private async postImport(importResult: ImportResult, organizationId: string = null): Promise<Error>  {
+        let folders: Array<string> = [];
+        let ciphers: Array<string> = [];
         if (importResult.folders != null) {
             for (let i = 0; i < importResult.folders.length; i++) {
                 const f = await this.folderService.encrypt(importResult.folders[i]);
                 await this.folderService.saveWithServer(f);
+                folders.push(f.id);
             }
         }
         for (let i = 0; i < importResult.ciphers.length; i++) {
             const c = await this.cipherService.encrypt(importResult.ciphers[i]);
             await this.cipherService.saveWithServer(c);
+            ciphers.push(c.id);
         }
-        
-        // if (importResult.folderRelationships != null) {
-        //     importResult.folderRelationships.forEach((r) =>
-        //         request.folderRelationships.push(new KvpRequest(r[0], r[1])));
-        // }
-        // return await this.apiService.postImportCiphers(request);
+        if (importResult.folderRelationships != null && importResult.folderRelationships.length > 0) {
+            for (let i = 0; i < importResult.folderRelationships.length; i++) {
+                let r = importResult.folderRelationships[i];
+                let cipher = await this.cipherService.get(ciphers[r[0]]); 
+                let folder = await this.folderService.get(folders[r[1]]);
+                if (cipher != null && folder != null) {
+                    cipher.folderId = folder.id;
+                    await this.cipherService.saveWithServer(cipher);
+                }
+            }
+        }
+        return null;
     }
 
     private badData(c: CipherView) {

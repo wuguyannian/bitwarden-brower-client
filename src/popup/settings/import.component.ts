@@ -73,11 +73,14 @@ export class ImportComponent  {
                 reader.readAsText(this.selectFile);
                 reader.onload = async (evt: any) => {
                     await this.importService.import(importer, evt.target.result);
-                };                
+                };
                 this.platformUtilsService.eventTrack('Imported Data');
                 this.saved();
                 await this.collectEvent();
-            } catch { }
+            } catch (error) { 
+                this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
+                error.stack);
+            }
         } else {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('invalidMasterPassword'));
