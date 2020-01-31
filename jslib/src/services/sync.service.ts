@@ -66,45 +66,6 @@ export class SyncService implements SyncServiceAbstraction {
         const now = new Date();
         await this.setLastSync(now);
         return this.syncCompleted(true);
-        // this.syncStarted();
-        // const isAuthenticated = await this.userService.isAuthenticated();
-        // if (!isAuthenticated) {
-        //     return this.syncCompleted(false);
-        // }
-
-        // const now = new Date();
-        // const needsSyncResult = await this.needsSyncing(forceSync);
-        // const needsSync = needsSyncResult[0];
-        // const skipped = needsSyncResult[1];
-
-        // if (skipped) {
-        //     return this.syncCompleted(false);
-        // }
-
-        // if (!needsSync) {
-        //     await this.setLastSync(now);
-        //     return this.syncCompleted(false);
-        // }
-
-        // const userId = await this.userService.getUserId();
-        // try {
-        //     const response = await this.apiService.getSync();
-
-        //     await this.syncProfile(response.profile);
-        //     await this.syncFolders(userId, response.folders);
-        //     await this.syncCollections(response.collections);
-        //     await this.syncCiphers(userId, response.ciphers);
-        //     await this.syncSettings(userId, response.domains);
-
-        //     await this.setLastSync(now);
-        //     return this.syncCompleted(true);
-        // } catch (e) {
-        //     if (allowThrowOnError) {
-        //         throw e;
-        //     } else {
-        //         return this.syncCompleted(false);
-        //     }
-        // }
     }
 
     async syncUpsertFolder(notification: SyncFolderNotification, isEdit: boolean): Promise<boolean> {
@@ -114,13 +75,6 @@ export class SyncService implements SyncServiceAbstraction {
                 const localFolder = await this.folderService.get(notification.id);
                 if ((!isEdit && localFolder == null) ||
                     (isEdit && localFolder != null && localFolder.revisionDate < notification.revisionDate)) {
-                    // const remoteFolder = await this.apiService.getFolder(notification.id);
-                    // if (remoteFolder != null) {
-                    //     const userId = await this.userService.getUserId();
-                    //     await this.folderService.upsert(new FolderData(remoteFolder, userId));
-                    //     this.messagingService.send('syncedUpsertedFolder', { folderId: notification.id });
-                    //     return this.syncCompleted(true);
-                    // }
                 }
             } catch { }
         }
@@ -177,13 +131,6 @@ export class SyncService implements SyncServiceAbstraction {
                 }
 
                 if (shouldUpdate) {
-                    // const remoteCipher = await this.apiService.getCipher(notification.id);
-                    // if (remoteCipher != null) {
-                    //     const userId = await this.userService.getUserId();
-                    //     await this.cipherService.upsert(new CipherData(remoteCipher, userId));
-                    //     this.messagingService.send('syncedUpsertedCipher', { cipherId: notification.id });
-                    //     return this.syncCompleted(true);
-                    // }
                 }
             } catch (e) {
                 if (e != null && e.statusCode === 404 && isEdit) {
@@ -217,27 +164,6 @@ export class SyncService implements SyncServiceAbstraction {
         this.syncInProgress = false;
         this.messagingService.send('syncCompleted', { successfully: successfully });
         return successfully;
-    }
-
-    private async needsSyncing(forceSync: boolean) {
-        if (forceSync) {
-            return [true, false];
-        }
-
-        const lastSync = await this.getLastSync();
-        if (lastSync == null || lastSync.getTime() === 0) {
-            return [true, false];
-        }
-
-        try {
-            // const response = await this.apiService.getAccountRevisionDate();
-            // if (new Date(response) <= lastSync) {
-            //     return [false, false];
-            // }
-            return [true, false];
-        } catch (e) {
-            return [false, true];
-        }
     }
 
     private async syncProfile(response: ProfileResponse) {

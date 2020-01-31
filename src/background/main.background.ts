@@ -209,8 +209,8 @@ export default class MainBackground {
     }
 
     async bootstrap() {
-        SafariApp.init();
-        this.analytics.ga('send', 'pageview', '/background.html');
+        //SafariApp.init();
+       // this.analytics.ga('send', 'pageview', '/background.html');
         this.containerService.attachToWindow(window);
 
         await (this.lockService as LockService).init(true);
@@ -223,7 +223,6 @@ export default class MainBackground {
             await this.tabsBackground.init();
             await this.contextMenusBackground.init();
             await this.idleBackground.init();
-            //await this.webRequestBackground.init();
             await this.windowsBackground.init();
         }
 
@@ -232,7 +231,7 @@ export default class MainBackground {
                 await this.environmentService.setUrlsFromStorage();
                 await this.setIcon();
                 this.cleanupNotificationQueue();
-                this.fullSync(true);
+                this.messagingService.send('syncCompleted', { successfully: true });
                 setTimeout(() => this.notificationsService.init(this.environmentService), 2500);
                 resolve();
             }, 500);
@@ -598,32 +597,6 @@ export default class MainBackground {
             break;
         }
     }
-
-    private async fullSync(override: boolean = false) {
-        const syncInternal = 6 * 60 * 60 * 1000; // 6 hours
-        const lastSync = await this.syncService.getLastSync();
-
-        let lastSyncAgo = syncInternal + 1;
-        if (lastSync != null) {
-            lastSyncAgo = new Date().getTime() - lastSync.getTime();
-        }
-
-        if (override || lastSyncAgo >= syncInternal) {
-            await this.syncService.fullSync(override);
-            this.scheduleNextSync();
-        } else {
-            this.scheduleNextSync();
-        }
-    }
-
-    private scheduleNextSync() {
-        if (this.syncTimeout) {
-            clearTimeout(this.syncTimeout);
-        }
-
-        this.syncTimeout = setTimeout(async () => await this.fullSync(), 5 * 60 * 1000); // check every 5 minutes
-    }
-
     // Browser API Helpers
 
     private contextMenusRemoveAll() {
