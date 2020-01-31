@@ -52,6 +52,11 @@ export class ImportComponent  {
                 this.i18nService.t('selectFile'));
             return;
         }
+        else if (this.selectFile.name.search(/[.](json|csv)/) == -1) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
+                this.i18nService.t('fileFormat'));
+            return;
+        }
 
         const keyHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         const storedKeyHash = await this.cryptoService.getKeyHash();
