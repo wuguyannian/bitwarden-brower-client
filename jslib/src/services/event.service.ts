@@ -4,7 +4,6 @@ import { EventData } from '../models/data/eventData';
 
 import { EventRequest } from '../models/request/eventRequest';
 
-import { ApiService } from '../abstractions/api.service';
 import { CipherService } from '../abstractions/cipher.service';
 import { EventService as EventServiceAbstraction } from '../abstractions/event.service';
 import { StorageService } from '../abstractions/storage.service';
@@ -15,7 +14,7 @@ import { ConstantsService } from './constants.service';
 export class EventService implements EventServiceAbstraction {
     private inited = false;
 
-    constructor(private storageService: StorageService, private apiService: ApiService,
+    constructor(private storageService: StorageService, 
         private userService: UserService, private cipherService: CipherService) { }
 
     init(checkOnInterval: boolean) {
@@ -73,17 +72,18 @@ export class EventService implements EventServiceAbstraction {
         if (eventCollection == null || eventCollection.length === 0) {
             return;
         }
-        const request = eventCollection.map((e) => {
-            const req = new EventRequest();
-            req.type = e.type;
-            req.cipherId = e.cipherId;
-            req.date = e.date;
-            return req;
-        });
-        try {
-            await this.apiService.postEventsCollect(request);
-            this.clearEvents();
-        } catch { }
+        // const request = eventCollection.map((e) => {
+        //     const req = new EventRequest();
+        //     req.type = e.type;
+        //     req.cipherId = e.cipherId;
+        //     req.date = e.date;
+        //     return req;
+        // });
+        // try {
+        //     await this.apiService.postEventsCollect(request);
+        //     this.clearEvents();
+        // } catch { }
+        this.clearEvents();
     }
 
     async clearEvents(): Promise<any> {

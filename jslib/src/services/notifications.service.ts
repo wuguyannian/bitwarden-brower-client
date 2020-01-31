@@ -3,7 +3,6 @@ import * as signalRMsgPack from '@microsoft/signalr-protocol-msgpack';
 
 import { NotificationType } from '../enums/notificationType';
 
-import { ApiService } from '../abstractions/api.service';
 import { AppIdService } from '../abstractions/appId.service';
 import { EnvironmentService } from '../abstractions/environment.service';
 import { LockService } from '../abstractions/lock.service';
@@ -25,8 +24,10 @@ export class NotificationsService implements NotificationsServiceAbstraction {
     private inactive = false;
     private reconnectTimer: any = null;
 
-    constructor(private userService: UserService, private syncService: SyncService,
-        private appIdService: AppIdService, private apiService: ApiService,
+    constructor(
+        private userService: UserService, 
+        private syncService: SyncService,
+        private appIdService: AppIdService, 
         private lockService: LockService, private logoutCallback: () => Promise<void>) { }
 
     async init(environmentService: EnvironmentService): Promise<void> {
@@ -144,7 +145,7 @@ export class NotificationsService implements NotificationsServiceAbstraction {
                 break;
             case NotificationType.SyncOrgKeys:
                 if (isAuthenticated) {
-                    await this.apiService.refreshIdentityToken();
+                    //await this.apiService.refreshIdentityToken();
                     await this.syncService.fullSync(true);
                     // Stop so a reconnect can be made
                     //await this.signalrConnection.stop();

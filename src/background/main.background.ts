@@ -1,7 +1,6 @@
 import { CipherType } from 'jslib/enums';
 
 import {
-    ApiService,
     AppIdService,
     AuditService,
     CipherService,
@@ -27,7 +26,6 @@ import { SystemService } from 'jslib/services/system.service';
 import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
 
 import {
-    ApiService as ApiServiceAbstraction,
     AppIdService as AppIdServiceAbstraction,
     AuditService as AuditServiceAbstraction,
     CipherService as CipherServiceAbstraction,
@@ -87,7 +85,6 @@ export default class MainBackground {
     cryptoService: CryptoServiceAbstraction;
     tokenService: TokenServiceAbstraction;
     appIdService: AppIdServiceAbstraction;
-    apiService: ApiServiceAbstraction;
     environmentService: EnvironmentServiceAbstraction;
     userService: UserServiceAbstraction;
     settingsService: SettingsServiceAbstraction;
@@ -119,7 +116,6 @@ export default class MainBackground {
     private idleBackground: IdleBackground;
     private runtimeBackground: RuntimeBackground;
     private tabsBackground: TabsBackground;
-    private webRequestBackground: WebRequestBackground;
     private windowsBackground: WindowsBackground;
 
     private sidebarAction: any;
@@ -144,14 +140,10 @@ export default class MainBackground {
         this.cryptoService = new CryptoService(this.storageService, this.secureStorageService, cryptoFunctionService);
         this.tokenService = new TokenService(this.storageService);
         this.appIdService = new AppIdService(this.storageService);
-        this.apiService = new ApiService(this.tokenService, this.platformUtilsService,
-            (expired: boolean) => this.logout(expired));
         this.userService = new UserService(this.storageService);
         this.settingsService = new SettingsService(this.userService, this.storageService);
-        this.cipherService = new CipherService(this.cryptoService, this.userService, this.settingsService,
-            this.apiService, this.storageService, this.i18nService, () => this.searchService);
-        this.folderService = new FolderService(this.cryptoService, this.userService, this.apiService,
-            this.storageService, this.i18nService, this.cipherService);
+        this.cipherService = new CipherService(this.cryptoService, this.userService, this.settingsService, this.storageService, this.i18nService, () => this.searchService);
+        this.folderService = new FolderService(this.cryptoService, this.userService, this.storageService, this.i18nService, this.cipherService);
         this.collectionService = new CollectionService(this.cryptoService, this.userService, this.storageService,
             this.i18nService);
         this.searchService = new SearchService(this.cipherService, this.platformUtilsService);
@@ -168,22 +160,21 @@ export default class MainBackground {
                     await this.systemService.clearPendingClipboard();
                 }
             });
-        this.syncService = new SyncService(this.userService, this.apiService, this.settingsService,
+        this.syncService = new SyncService(this.userService, this.settingsService,
             this.folderService, this.cipherService, this.cryptoService, this.collectionService,
             this.storageService, this.messagingService, async (expired: boolean) => await this.logout(expired));
-        this.eventService = new EventService(this.storageService, this.apiService, this.userService,
+        this.eventService = new EventService(this.storageService, this.userService,
             this.cipherService);
         this.passwordGenerationService = new PasswordGenerationService(this.cryptoService, this.storageService);
         this.totpService = new TotpService(this.storageService, cryptoFunctionService);
         this.autofillService = new AutofillService(this.cipherService, this.userService, this.totpService,
             this.eventService);
         this.containerService = new ContainerService(this.cryptoService);
-        this.auditService = new AuditService(cryptoFunctionService, this.apiService);
+        this.auditService = new AuditService(cryptoFunctionService);
         this.exportService = new ExportService(this.folderService, this.cipherService, this.messagingService);
         this.importService = new ImportService(this.cipherService, this.folderService, this.i18nService);
-        this.notificationsService = new NotificationsService(this.userService, this.syncService, this.appIdService,
-            this.apiService, this.lockService, () => this.logout(true));
-        this.environmentService = new EnvironmentService(this.apiService, this.storageService,
+        this.notificationsService = new NotificationsService(this.userService, this.syncService, this.appIdService, this.lockService, () => this.logout(true));
+        this.environmentService = new EnvironmentService(this.storageService,
             this.notificationsService);
         this.analytics = new Analytics(window, () => BrowserApi.gaFilter(), this.platformUtilsService,
             this.storageService, this.appIdService);
@@ -213,8 +204,6 @@ export default class MainBackground {
                 this.passwordGenerationService, this.analytics, this.platformUtilsService, this.lockService,
                 this.eventService);
             this.idleBackground = new IdleBackground(this.lockService, this.storageService, this.notificationsService);
-            this.webRequestBackground = new WebRequestBackground(this.platformUtilsService, this.cipherService,
-                this.lockService);
             this.windowsBackground = new WindowsBackground(this);
         }
     }
@@ -234,7 +223,7 @@ export default class MainBackground {
             await this.tabsBackground.init();
             await this.contextMenusBackground.init();
             await this.idleBackground.init();
-            await this.webRequestBackground.init();
+            //await this.webRequestBackground.init();
             await this.windowsBackground.init();
         }
 

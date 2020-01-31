@@ -14,7 +14,6 @@ import { ValidationService } from 'jslib/angular/services/validation.service';
 
 import { BrowserApi } from '../../browser/browserApi';
 
-import { ApiService } from 'jslib/abstractions/api.service';
 import { AppIdService } from 'jslib/abstractions/appId.service';
 import { AuditService } from 'jslib/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
@@ -63,10 +62,11 @@ function getBgService<T>(service: string) {
 
 export const stateService = new StateService();
 export const messagingService = new BrowserMessagingService();
-export const authService = new AuthService(getBgService<CryptoService>('cryptoService')(),
-    getBgService<ApiService>('apiService')(), getBgService<UserService>('userService')(),
-    getBgService<TokenService>('tokenService')(), getBgService<AppIdService>('appIdService')(),
-    getBgService<I18nService>('i18nService')(), getBgService<PlatformUtilsService>('platformUtilsService')(),
+export const authService = new AuthService(
+    getBgService<CryptoService>('cryptoService')(),
+    getBgService<UserService>('userService')(),
+    getBgService<I18nService>('i18nService')(), 
+    getBgService<PlatformUtilsService>('platformUtilsService')(),
     messagingService);
 export const searchService = new PopupSearchService(getBgService<SearchService>('searchService')(),
     getBgService<CipherService>('cipherService')(), getBgService<PlatformUtilsService>('platformUtilsService')());
@@ -141,7 +141,6 @@ export function initFactory(i18nService: I18nService, storageService: StorageSer
             useFactory: getBgService<PasswordGenerationService>('passwordGenerationService'),
             deps: [],
         },
-        { provide: ApiService, useFactory: getBgService<ApiService>('apiService'), deps: [] },
         { provide: SyncService, useFactory: getBgService<SyncService>('syncService'), deps: [] },
         { provide: UserService, useFactory: getBgService<UserService>('userService'), deps: [] },
         { provide: SettingsService, useFactory: getBgService<SettingsService>('settingsService'), deps: [] },

@@ -4,23 +4,12 @@ import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
 import { AuthResult } from 'jslib/models/domain/authResult';
 import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
 
-import { DeviceRequest } from 'jslib/models/request/deviceRequest';
-import { KeysRequest } from 'jslib/models/request/keysRequest';
-import { PreloginRequest } from 'jslib/models/request/preloginRequest';
-import { TokenRequest } from 'jslib/models/request/tokenRequest';
 
-import { ErrorResponse } from 'jslib/models/response/errorResponse';
-import { IdentityTokenResponse } from 'jslib/models/response/identityTokenResponse';
-import { IdentityTwoFactorResponse } from 'jslib/models/response/identityTwoFactorResponse';
-
-import { ApiService } from 'jslib/abstractions/api.service';
-import { AppIdService } from 'jslib/abstractions/appId.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib/abstractions/auth.service';
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { TokenService } from 'jslib/abstractions/token.service';
 import { UserService } from 'jslib/abstractions/user.service';
 
 export const TwoFactorProviders = {
@@ -84,10 +73,11 @@ export class AuthService implements AuthServiceAbstraction {
     private kdf: KdfType;
     private kdfIterations: number;
 
-    constructor(private cryptoService: CryptoService, private apiService: ApiService,
-        private userService: UserService, private tokenService: TokenService,
-        private appIdService: AppIdService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService,
+    constructor(private cryptoService: CryptoService, 
+        private userService: UserService, 
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService, 
+        private messagingService: MessagingService,
         private setCryptoKeys = true) { }
 
     init() {

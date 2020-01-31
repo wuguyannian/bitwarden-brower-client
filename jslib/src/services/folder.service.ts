@@ -31,8 +31,9 @@ const NestingDelimiter = '/';
 export class FolderService implements FolderServiceAbstraction {
     decryptedFolderCache: FolderView[];
 
-    constructor(private cryptoService: CryptoService, private userService: UserService,
-        private apiService: ApiService, private storageService: StorageService,
+    constructor(
+        private cryptoService: CryptoService, 
+        private userService: UserService, private storageService: StorageService,
         private i18nService: I18nService, private cipherService: CipherService) { }
 
     clearCache(): void {

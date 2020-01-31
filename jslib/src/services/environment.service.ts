@@ -2,7 +2,6 @@ import { EnvironmentUrls } from '../models/domain/environmentUrls';
 
 import { ConstantsService } from './constants.service';
 
-import { ApiService } from '../abstractions/api.service';
 import { EnvironmentService as EnvironmentServiceAbstraction } from '../abstractions/environment.service';
 import { NotificationsService } from '../abstractions/notifications.service';
 import { StorageService } from '../abstractions/storage.service';
@@ -16,7 +15,7 @@ export class EnvironmentService implements EnvironmentServiceAbstraction {
     notificationsUrl: string;
     eventsUrl: string;
 
-    constructor(private apiService: ApiService, private storageService: StorageService,
+    constructor(private storageService: StorageService,
         private notificationsService: NotificationsService) { }
 
     getWebVaultUrl(): string {
@@ -44,7 +43,7 @@ export class EnvironmentService implements EnvironmentServiceAbstraction {
 
         if (urls.base) {
             this.baseUrl = envUrls.base = urls.base;
-            this.apiService.setUrls(envUrls);
+            //this.apiService.setUrls(envUrls);
             return;
         }
 
@@ -54,7 +53,7 @@ export class EnvironmentService implements EnvironmentServiceAbstraction {
         this.iconsUrl = urls.icons;
         this.notificationsUrl = urls.notifications;
         this.eventsUrl = envUrls.events = urls.events;
-        this.apiService.setUrls(envUrls);
+        //this.apiService.setUrls(envUrls);
     }
 
     async setUrls(urls: any): Promise<any> {
@@ -93,7 +92,7 @@ export class EnvironmentService implements EnvironmentServiceAbstraction {
             envUrls.events = this.eventsUrl;
         }
 
-        this.apiService.setUrls(envUrls);
+        //this.apiService.setUrls(envUrls);
         if (this.notificationsService != null) {
             this.notificationsService.init(this);
         }

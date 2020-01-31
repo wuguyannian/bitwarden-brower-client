@@ -63,7 +63,7 @@ export class CipherService implements CipherServiceAbstraction {
     _decryptedCipherCache: CipherView[];
 
     constructor(private cryptoService: CryptoService, private userService: UserService,
-        private settingsService: SettingsService, private apiService: ApiService,
+        private settingsService: SettingsService, 
         private storageService: StorageService, private i18nService: I18nService,
         private searchService: () => SearchService) {
     }
@@ -598,11 +598,11 @@ export class CipherService implements CipherServiceAbstraction {
 
         let response: CipherResponse;
         try {
-            if (admin) {
-                response = await this.apiService.postCipherAttachmentAdmin(cipher.id, fd);
-            } else {
-                response = await this.apiService.postCipherAttachment(cipher.id, fd);
-            }
+            // if (admin) {
+            //     response = await this.apiService.postCipherAttachmentAdmin(cipher.id, fd);
+            // } else {
+            //     response = await this.apiService.postCipherAttachment(cipher.id, fd);
+            // }
         } catch (e) {
             throw new Error((e as ErrorResponse).getSingleMessage());
         }

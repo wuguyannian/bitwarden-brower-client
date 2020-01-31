@@ -1,4 +1,3 @@
-import { ApiService } from '../abstractions/api.service';
 import { CipherService } from '../abstractions/cipher.service';
 import { CollectionService } from '../abstractions/collection.service';
 import { CryptoService } from '../abstractions/crypto.service';
@@ -33,7 +32,7 @@ const Keys = {
 export class SyncService implements SyncServiceAbstraction {
     syncInProgress: boolean = false;
 
-    constructor(private userService: UserService, private apiService: ApiService,
+    constructor(private userService: UserService, 
         private settingsService: SettingsService, private folderService: FolderService,
         private cipherService: CipherService, private cryptoService: CryptoService,
         private collectionService: CollectionService, private storageService: StorageService,
