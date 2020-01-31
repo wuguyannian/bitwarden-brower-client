@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 
 import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { EventService } from 'jslib/abstractions/event.service';
-import { ExportService } from 'jslib/abstractions/export.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { EventType } from 'jslib/enums/eventType';
+import { ImportService } from 'jslib/abstractions/import.service';
+import { Importer } from 'jslib/importers/importer';
 
 @Component({
     selector: 'app-import',
@@ -20,7 +21,6 @@ export class ImportComponent  {
 
     formPromise: Promise<string>;
     masterPassword: string;
-    format: 'json' | 'csv' = 'json';
     showPassword = false;
     selectFile: File = null;
 
@@ -28,7 +28,7 @@ export class ImportComponent  {
         protected cryptoService: CryptoService, 
         protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService, 
-        protected exportService: ExportService,
+        protected importService: ImportService,
         protected eventService: EventService, private router: Router) {
     }
 
@@ -62,8 +62,18 @@ export class ImportComponent  {
         const storedKeyHash = await this.cryptoService.getKeyHash();
         if (storedKeyHash != null && keyHash != null && storedKeyHash === keyHash) {
             try {
-                // this.formPromise = this.getExportData();
-                // const data = await this.formPromise;
+                let importer:Importer;
+                if (this.selectFile.name.search(/[.](json)/) == -1) {
+                    importer = this.importService.getImporter("bitwardencsv");
+                }
+                else {
+                    importer = this.importService.getImporter("bitwardenjson");
+                }
+                const reader = new FileReader();
+                reader.readAsText(this.selectFile);
+                reader.onload = async (evt: any) => {
+                    await this.importService.import(importer, evt.target.result);
+                };                
                 this.platformUtilsService.eventTrack('Imported Data');
                 this.saved();
                 await this.collectEvent();

@@ -24,6 +24,7 @@ import { CryptoService } from 'jslib/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { ExportService } from 'jslib/abstractions/export.service';
+import { ImportService } from 'jslib/abstractions/import.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { LockService } from 'jslib/abstractions/lock.service';
@@ -149,6 +150,7 @@ export function initFactory(i18nService: I18nService, storageService: StorageSer
         { provide: AppIdService, useFactory: getBgService<AppIdService>('appIdService'), deps: [] },
         { provide: AutofillService, useFactory: getBgService<AutofillService>('autofillService'), deps: [] },
         { provide: ExportService, useFactory: getBgService<ExportService>('exportService'), deps: [] },
+        { provide: ImportService, useFactory: getBgService<ImportService>('importService'), deps: [] },
         {
             provide: NotificationsService,
             useFactory: getBgService<NotificationsService>('notificationsService'),

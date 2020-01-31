@@ -2,7 +2,7 @@ import * as papa from 'papaparse';
 
 import { CipherType } from '../enums/cipherType';
 
-import { ApiService } from '../abstractions/api.service';
+import { MessagingService } from '../abstractions/messaging.service';
 import { CipherService } from '../abstractions/cipher.service';
 import { ExportService as ExportServiceAbstraction } from '../abstractions/export.service';
 import { FolderService } from '../abstractions/folder.service';
@@ -11,20 +11,14 @@ import { CipherView } from '../models/view/cipherView';
 import { CollectionView } from '../models/view/collectionView';
 import { FolderView } from '../models/view/folderView';
 
-import { Cipher } from '../models/domain/cipher';
-import { Collection } from '../models/domain/collection';
-
-import { CipherData } from '../models/data/cipherData';
-import { CollectionData } from '../models/data/collectionData';
-import { CollectionDetailsResponse } from '../models/response/collectionResponse';
-
 import { CipherWithIds as CipherExport } from '../models/export/cipherWithIds';
-import { CollectionWithId as CollectionExport } from '../models/export/collectionWithId';
 import { FolderWithId as FolderExport } from '../models/export/folderWithId';
 
 export class ExportService implements ExportServiceAbstraction {
+    syncInProgress: boolean = false;
+
     constructor(private folderService: FolderService, private cipherService: CipherService,
-        private apiService: ApiService) { }
+        private messagingService: MessagingService) { }
 
     async getExport(format: 'csv' | 'json' = 'csv'): Promise<string> {
         let decFolders: FolderView[] = [];
@@ -99,78 +93,95 @@ export class ExportService implements ExportServiceAbstraction {
         const decCollections: CollectionView[] = [];
         const decCiphers: CipherView[] = [];
         const promises = [];
+        return "";
 
-        promises.push(this.apiService.getCollections(organizationId).then((collections) => {
-            const collectionPromises: any = [];
-            if (collections != null && collections.data != null && collections.data.length > 0) {
-                collections.data.forEach((c) => {
-                    const collection = new Collection(new CollectionData(c as CollectionDetailsResponse));
-                    collectionPromises.push(collection.decrypt().then((decCol) => {
-                        decCollections.push(decCol);
-                    }));
-                });
-            }
-            return Promise.all(collectionPromises);
-        }));
+        // promises.push(this.apiService.getCollections(organizationId).then((collections) => {
+        //     const collectionPromises: any = [];
+        //     if (collections != null && collections.data != null && collections.data.length > 0) {
+        //         collections.data.forEach((c) => {
+        //             const collection = new Collection(new CollectionData(c as CollectionDetailsResponse));
+        //             collectionPromises.push(collection.decrypt().then((decCol) => {
+        //                 decCollections.push(decCol);
+        //             }));
+        //         });
+        //     }
+        //     return Promise.all(collectionPromises);
+        // }));
 
-        promises.push(this.apiService.getCiphersOrganization(organizationId).then((ciphers) => {
-            const cipherPromises: any = [];
-            if (ciphers != null && ciphers.data != null && ciphers.data.length > 0) {
-                ciphers.data.forEach((c) => {
-                    const cipher = new Cipher(new CipherData(c));
-                    cipherPromises.push(cipher.decrypt().then((decCipher) => {
-                        decCiphers.push(decCipher);
-                    }));
-                });
-            }
-            return Promise.all(cipherPromises);
-        }));
+        // promises.push(this.apiService.getCiphersOrganization(organizationId).then((ciphers) => {
+        //     const cipherPromises: any = [];
+        //     if (ciphers != null && ciphers.data != null && ciphers.data.length > 0) {
+        //         ciphers.data.forEach((c) => {
+        //             const cipher = new Cipher(new CipherData(c));
+        //             cipherPromises.push(cipher.decrypt().then((decCipher) => {
+        //                 decCiphers.push(decCipher);
+        //             }));
+        //         });
+        //     }
+        //     return Promise.all(cipherPromises);
+        // }));
 
-        await Promise.all(promises);
+        // await Promise.all(promises);
 
-        if (format === 'csv') {
-            const collectionsMap = new Map<string, CollectionView>();
-            decCollections.forEach((c) => {
-                collectionsMap.set(c.id, c);
-            });
+        // if (format === 'csv') {
+        //     const collectionsMap = new Map<string, CollectionView>();
+        //     decCollections.forEach((c) => {
+        //         collectionsMap.set(c.id, c);
+        //     });
 
-            const exportCiphers: any[] = [];
-            decCiphers.forEach((c) => {
-                // only export logins and secure notes
-                if (c.type !== CipherType.Login && c.type !== CipherType.SecureNote) {
-                    return;
-                }
+        //     const exportCiphers: any[] = [];
+        //     decCiphers.forEach((c) => {
+        //         // only export logins and secure notes
+        //         if (c.type !== CipherType.Login && c.type !== CipherType.SecureNote) {
+        //             return;
+        //         }
 
-                const cipher: any = {};
-                cipher.collections = [];
-                if (c.collectionIds != null) {
-                    cipher.collections = c.collectionIds.filter((id) => collectionsMap.has(id))
-                        .map((id) => collectionsMap.get(id).name);
-                }
-                this.buildCommonCipher(cipher, c);
-                exportCiphers.push(cipher);
-            });
+        //         const cipher: any = {};
+        //         cipher.collections = [];
+        //         if (c.collectionIds != null) {
+        //             cipher.collections = c.collectionIds.filter((id) => collectionsMap.has(id))
+        //                 .map((id) => collectionsMap.get(id).name);
+        //         }
+        //         this.buildCommonCipher(cipher, c);
+        //         exportCiphers.push(cipher);
+        //     });
 
-            return papa.unparse(exportCiphers);
-        } else {
-            const jsonDoc: any = {
-                collections: [],
-                items: [],
-            };
+        //     return papa.unparse(exportCiphers);
+        // } else {
+        //     const jsonDoc: any = {
+        //         collections: [],
+        //         items: [],
+        //     };
 
-            decCollections.forEach((c) => {
-                const collection = new CollectionExport();
-                collection.build(c);
-                jsonDoc.collections.push(collection);
-            });
+        //     decCollections.forEach((c) => {
+        //         const collection = new CollectionExport();
+        //         collection.build(c);
+        //         jsonDoc.collections.push(collection);
+        //     });
 
-            decCiphers.forEach((c) => {
-                const cipher = new CipherExport();
-                cipher.build(c);
-                jsonDoc.items.push(cipher);
-            });
-            return JSON.stringify(jsonDoc, null, '  ');
-        }
+        //     decCiphers.forEach((c) => {
+        //         const cipher = new CipherExport();
+        //         cipher.build(c);
+        //         jsonDoc.items.push(cipher);
+        //     });
+        //     return JSON.stringify(jsonDoc, null, '  ');
+        // }
+    }
+
+    async import(file:File) : Promise<boolean> {
+        this.syncStarted();
+        return this.syncCompleted(true);
+    }
+
+    private syncStarted() {
+        this.syncInProgress = true;
+        this.messagingService.send('syncStarted');
+    }
+
+    private syncCompleted(successfully: boolean): boolean {
+        this.syncInProgress = false;
+        this.messagingService.send('syncCompleted', { successfully: successfully });
+        return successfully;
     }
 
     getFileName(prefix: string = null, extension: string = 'csv'): string {

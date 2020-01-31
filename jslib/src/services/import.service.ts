@@ -131,9 +131,10 @@ export class ImportService implements ImportServiceAbstraction {
         { id: 'codebookcsv', name: 'Codebook (csv)' },
     ];
 
-    constructor(private cipherService: CipherService, private folderService: FolderService,
-        private apiService: ApiService, private i18nService: I18nService,
-        private collectionService: CollectionService) { }
+    constructor(
+        private cipherService: CipherService, 
+        private folderService: FolderService,
+        private i18nService: I18nService) { }
 
     getImportOptions(): ImportOption[] {
         return this.featuredImportOptions.concat(this.regularImportOptions);
@@ -281,43 +282,22 @@ export class ImportService implements ImportServiceAbstraction {
     }
 
     private async postImport(importResult: ImportResult, organizationId: string = null) {
-        if (organizationId == null) {
-            const request = new ImportCiphersRequest();
-            for (let i = 0; i < importResult.ciphers.length; i++) {
-                const c = await this.cipherService.encrypt(importResult.ciphers[i]);
-                request.ciphers.push(new CipherRequest(c));
+        if (importResult.folders != null) {
+            for (let i = 0; i < importResult.folders.length; i++) {
+                const f = await this.folderService.encrypt(importResult.folders[i]);
+                await this.folderService.saveWithServer(f);
             }
-            if (importResult.folders != null) {
-                for (let i = 0; i < importResult.folders.length; i++) {
-                    const f = await this.folderService.encrypt(importResult.folders[i]);
-                    request.folders.push(new FolderRequest(f));
-                }
-            }
-            if (importResult.folderRelationships != null) {
-                importResult.folderRelationships.forEach((r) =>
-                    request.folderRelationships.push(new KvpRequest(r[0], r[1])));
-            }
-            return await this.apiService.postImportCiphers(request);
-        } else {
-            const request = new ImportOrganizationCiphersRequest();
-            for (let i = 0; i < importResult.ciphers.length; i++) {
-                importResult.ciphers[i].organizationId = organizationId;
-                const c = await this.cipherService.encrypt(importResult.ciphers[i]);
-                request.ciphers.push(new CipherRequest(c));
-            }
-            if (importResult.collections != null) {
-                for (let i = 0; i < importResult.collections.length; i++) {
-                    importResult.collections[i].organizationId = organizationId;
-                    const c = await this.collectionService.encrypt(importResult.collections[i]);
-                    request.collections.push(new CollectionRequest(c));
-                }
-            }
-            if (importResult.collectionRelationships != null) {
-                importResult.collectionRelationships.forEach((r) =>
-                    request.collectionRelationships.push(new KvpRequest(r[0], r[1])));
-            }
-            return await this.apiService.postImportOrganizationCiphers(organizationId, request);
         }
+        for (let i = 0; i < importResult.ciphers.length; i++) {
+            const c = await this.cipherService.encrypt(importResult.ciphers[i]);
+            await this.cipherService.saveWithServer(c);
+        }
+        
+        // if (importResult.folderRelationships != null) {
+        //     importResult.folderRelationships.forEach((r) =>
+        //         request.folderRelationships.push(new KvpRequest(r[0], r[1])));
+        // }
+        // return await this.apiService.postImportCiphers(request);
     }
 
     private badData(c: CipherView) {

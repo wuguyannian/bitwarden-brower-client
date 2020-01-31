@@ -20,6 +20,7 @@ import {
 } from 'jslib/services';
 import { EventService } from 'jslib/services/event.service';
 import { ExportService } from 'jslib/services/export.service';
+import { ImportService } from 'jslib/services/import.service';
 import { NotificationsService } from 'jslib/services/notifications.service';
 import { SearchService } from 'jslib/services/search.service';
 import { SystemService } from 'jslib/services/system.service';
@@ -48,6 +49,7 @@ import {
 } from 'jslib/abstractions';
 import { EventService as EventServiceAbstraction } from 'jslib/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
+import { ImportService as ImportServiceAbstraction } from 'jslib/abstractions/import.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
 import { SystemService as SystemServiceAbstraction } from 'jslib/abstractions/system.service';
@@ -100,6 +102,7 @@ export default class MainBackground {
     containerService: ContainerService;
     auditService: AuditServiceAbstraction;
     exportService: ExportServiceAbstraction;
+    importService: ImportServiceAbstraction;
     searchService: SearchServiceAbstraction;
     notificationsService: NotificationsServiceAbstraction;
     systemService: SystemServiceAbstraction;
@@ -176,7 +179,8 @@ export default class MainBackground {
             this.eventService);
         this.containerService = new ContainerService(this.cryptoService);
         this.auditService = new AuditService(cryptoFunctionService, this.apiService);
-        this.exportService = new ExportService(this.folderService, this.cipherService, this.apiService);
+        this.exportService = new ExportService(this.folderService, this.cipherService, this.messagingService);
+        this.importService = new ImportService(this.cipherService, this.folderService, this.i18nService);
         this.notificationsService = new NotificationsService(this.userService, this.syncService, this.appIdService,
             this.apiService, this.lockService, () => this.logout(true));
         this.environmentService = new EnvironmentService(this.apiService, this.storageService,
